@@ -27,6 +27,12 @@ module.exports = async function (options) {
     res.sendFile(path.join(root, "index.html"));
   });
   app.use("/webapp", express.static(path.join(root, "webapp")));
+  app.get("/resources/:library(*)/themes/sap_horizon/library.css", (req, res) => {
+    res.type("text/css").send("/* local SAPUI5 theme fallback */");
+  });
+  app.get("/resources/:library(*)/themes/sap_horizon/library-parameters.json", (req, res) => {
+    res.type("application/json").send("{}");
+  });
 
   [
     "@openui5/sap.ui.core",
