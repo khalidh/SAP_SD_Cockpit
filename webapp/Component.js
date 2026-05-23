@@ -1,8 +1,9 @@
 sap.ui.define([
   "sap/ui/core/UIComponent",
   "sap/ui/Device",
-  "sap/ui/model/json/JSONModel"
-], function (UIComponent, Device, JSONModel) {
+  "sap/ui/model/json/JSONModel",
+  "sap/ui/model/odata/v4/ODataModel"
+], function (UIComponent, Device, JSONModel, ODataModel) {
   "use strict";
 
   return UIComponent.extend("sd.sales.cockpit.Component", {
@@ -12,6 +13,14 @@ sap.ui.define([
 
     init: function () {
       UIComponent.prototype.init.apply(this, arguments);
+
+      this.setModel(new ODataModel({
+        serviceUrl: "http://localhost:4004/odata/v4/sd/",
+        synchronizationMode: "None",
+        operationMode: "Server",
+        updateGroupId: "alerts",
+        autoExpandSelect: true
+      }));
 
       this.setModel(new JSONModel({
         isPhone: Device.system.phone,

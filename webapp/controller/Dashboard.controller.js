@@ -12,8 +12,11 @@ sap.ui.define([
     },
 
     _loadDashboardKpis: function () {
-      var oModel = this.getView().getModel();
+      var oModel = this.getOwnerComponent().getModel();
       var oDashboardModel = this.getOwnerComponent().getModel("dashboard");
+      if (!oModel) {
+        return;
+      }
       var oAction = oModel.bindContext("/dashboardKpis(...)");
 
       oAction.execute().then(function () {
