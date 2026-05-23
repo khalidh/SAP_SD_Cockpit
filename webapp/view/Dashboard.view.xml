@@ -19,33 +19,33 @@
 
         <layout:Grid defaultSpan="XL3 L3 M6 S12" hSpacing="1" vSpacing="1" class="sdKpiGrid">
           <GenericTile header="CA du mois" subheader="Net facturé" frameType="OneByOne" press=".onNavToAnalytics" class="sdTile">
-            <TileContent unit="{/kpis/monthlyRevenue/currency}">
-              <NumericContent value="{/kpis/monthlyRevenue/value}" scale="K" indicator="Up" valueColor="Good" icon="sap-icon://sales-quote"/>
+            <TileContent unit="{dashboard>/currency}">
+              <NumericContent value="{dashboard>/monthlyRevenue}" scale="{dashboard>/monthlyRevenueScale}" indicator="Up" valueColor="Good" icon="sap-icon://sales-quote"/>
             </TileContent>
           </GenericTile>
           <GenericTile header="Commandes ouvertes" subheader="À suivre" frameType="OneByOne" press=".onNavToSalesOrders" class="sdTile">
             <TileContent>
-              <NumericContent value="{/kpis/openOrders}" valueColor="Critical" icon="sap-icon://sales-order"/>
+              <NumericContent value="{dashboard>/openOrders}" valueColor="Critical" icon="sap-icon://sales-order"/>
             </TileContent>
           </GenericTile>
           <GenericTile header="Livraisons en retard" subheader="Priorité logistique" frameType="OneByOne" press=".onNavToAlerts" class="sdTile">
             <TileContent>
-              <NumericContent value="{/kpis/delayedDeliveries}" valueColor="Error" icon="sap-icon://shipping-status"/>
+              <NumericContent value="{dashboard>/delayedDeliveries}" valueColor="Error" icon="sap-icon://shipping-status"/>
             </TileContent>
           </GenericTile>
           <GenericTile header="Factures en attente" subheader="À générer" frameType="OneByOne" press=".onNavToAlerts" class="sdTile">
             <TileContent>
-              <NumericContent value="{/kpis/pendingInvoices}" valueColor="Critical" icon="sap-icon://customer-financial-fact-sheet"/>
+              <NumericContent value="{dashboard>/pendingInvoices}" valueColor="Critical" icon="sap-icon://customer-financial-fact-sheet"/>
             </TileContent>
           </GenericTile>
           <GenericTile header="Blocages crédit" subheader="Clients à risque" frameType="OneByOne" press=".onNavToAlerts" class="sdTile">
             <TileContent>
-              <NumericContent value="{/kpis/creditBlockedOrders}" valueColor="Error" icon="sap-icon://credit-card"/>
+              <NumericContent value="{dashboard>/creditBlockedOrders}" valueColor="Error" icon="sap-icon://credit-card"/>
             </TileContent>
           </GenericTile>
           <GenericTile header="Taux de service" subheader="Livraisons à l'heure" frameType="OneByOne" press=".onNavToAnalytics" class="sdTile">
             <TileContent unit="%">
-              <NumericContent value="{/kpis/serviceLevel}" valueColor="Good" icon="sap-icon://complete"/>
+              <NumericContent value="{dashboard>/serviceLevel}" valueColor="Good" icon="sap-icon://complete"/>
             </TileContent>
           </GenericTile>
         </layout:Grid>
@@ -53,7 +53,7 @@
         <IconTabBar expandable="false" class="sapUiMediumMarginTop">
           <items>
             <IconTabFilter key="customers" text="Top clients" icon="sap-icon://customer">
-              <Table items="{/topCustomers}">
+              <Table items="{path:'/TopCustomers', parameters: {$orderby: 'revenue desc'}}">
                 <columns>
                   <Column><Text text="Client"/></Column>
                   <Column hAlign="End"><Text text="CA"/></Column>
@@ -63,7 +63,7 @@
                 <items>
                   <ColumnListItem>
                     <cells>
-                      <ObjectIdentifier title="{name}" text="{id}"/>
+                      <ObjectIdentifier title="{name}" text="{customerId}"/>
                       <ObjectNumber number="{revenue}" unit="EUR" state="Success"/>
                       <Text text="{orders}"/>
                       <ObjectStatus text="{trend}" state="{path:'trendStatus', formatter:'.formatter.statusState'}"/>
@@ -73,7 +73,7 @@
               </Table>
             </IconTabFilter>
             <IconTabFilter key="materials" text="Top articles" icon="sap-icon://product">
-              <Table items="{/topMaterials}">
+              <Table items="{path:'/TopMaterials', parameters: {$orderby: 'revenue desc'}}">
                 <columns>
                   <Column><Text text="Article"/></Column>
                   <Column><Text text="Libellé"/></Column>

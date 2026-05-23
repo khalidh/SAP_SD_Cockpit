@@ -80,6 +80,23 @@ entity KpiSnapshots : cuid, managed {
   currency            : CurrencyCode default 'EUR';
 }
 
+entity TopCustomers : cuid {
+  customerId  : String(10);
+  name        : String(80);
+  revenue     : Decimal(15, 2);
+  orders      : Integer;
+  trend       : String(40);
+  trendStatus : StatusCode;
+}
+
+entity TopMaterials : cuid {
+  material    : String(18);
+  description : String(100);
+  category    : String(40);
+  quantity    : Integer;
+  revenue     : Decimal(15, 2);
+}
+
 entity RevenueByMonth : cuid {
   month   : String(10);
   revenue : Decimal(15, 2);

@@ -1,8 +1,10 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
+  "sap/ui/model/Filter",
+  "sap/ui/model/FilterOperator",
   "sap/m/MessageToast",
   "sd/sales/cockpit/model/formatter"
-], function (Controller, MessageToast, formatter) {
+], function (Controller, Filter, FilterOperator, MessageToast, formatter) {
   "use strict";
 
   return Controller.extend("sd.sales.cockpit.controller.SalesOrderDetail", {
@@ -16,17 +18,19 @@ sap.ui.define([
 
     _onRouteMatched: function (oEvent) {
       var sOrderId = oEvent.getParameter("arguments").orderId;
-      var aOrders = this.getView().getModel().getProperty("/salesOrders") || [];
-      var iIndex = aOrders.findIndex(function (oOrder) {
-        return oOrder.orderId === sOrderId;
+      var oListBinding = this.getView().getModel().bindList("/SalesOrders", null, null, [
+        new Filter("orderId", FilterOperator.EQ, sOrderId)
+      ], {
+        $expand: "items,processSteps"
       });
 
-      if (iIndex < 0) {
-        this.getOwnerComponent().getRouter().navTo("salesOrders");
-        return;
-      }
-
-      this.getView().bindElement("/salesOrders/" + iIndex);
+      oListBinding.requestContexts(0, 1).then(function (aContexts) {
+        if (!aContexts.length) {
+          this.getOwnerComponent().getRouter().navTo("salesOrders");
+          return;
+        }
+        this.getView().setBindingContext(aContexts[0]);
+      }.bind(this));
     },
 
     onNavBack: function () {

@@ -7,6 +7,8 @@ service SalesCockpitService {
   entity ProcessSteps      as projection on db.ProcessSteps;
   entity SdAlerts          as projection on db.SdAlerts;
   entity KpiSnapshots      as projection on db.KpiSnapshots;
+  entity TopCustomers      as projection on db.TopCustomers;
+  entity TopMaterials      as projection on db.TopMaterials;
   entity RevenueByMonth    as projection on db.RevenueByMonth;
   entity RevenueByCustomer as projection on db.RevenueByCustomer;
   entity RevenueBySalesOrg as projection on db.RevenueBySalesOrg;

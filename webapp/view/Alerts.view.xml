@@ -14,14 +14,14 @@
               <SegmentedButtonItem key="Warning" text="Attention"/>
             </items>
           </SegmentedButton>
-          <ComboBox id="alertTypeFilter" width="16rem" placeholder="Type d'alerte" items="{/filters/alertTypes}" selectionChange=".onFilter">
-            <core:Item key="{key}" text="{text}"/>
+          <ComboBox id="alertTypeFilter" width="16rem" placeholder="Type d'alerte" items="{ui>/filters/alertTypes}" selectionChange=".onFilter">
+            <core:Item key="{ui>key}" text="{ui>text}"/>
           </ComboBox>
           <ToolbarSpacer/>
           <Button icon="sap-icon://refresh" text="Rafraîchir" press=".onRefresh"/>
         </OverflowToolbar>
 
-        <List id="alertsList" items="{/alerts}" growing="true">
+        <List id="alertsList" items="{/SdAlerts}" growing="true">
           <ObjectListItem
             title="{title}"
             number="{amount}"

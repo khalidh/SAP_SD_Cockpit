@@ -10,7 +10,7 @@ Le projet suit un pattern SAPUI5 MVC classique :
 - `webapp/Component.js` : bootstrap du composant et initialisation du router.
 - `webapp/view/*.view.xml` : vues XML freestyle.
 - `webapp/controller/*.controller.js` : logique de navigation, filtrage et interaction.
-- `webapp/model/mockData.json` : données SD mockées dans un `JSONModel`.
+- `webapp/model/mockData.json` : données SD mockées conservées comme référence de prototypage.
 - `webapp/model/formatter.js` : formatage des statuts, montants et icônes.
 - `webapp/css/style.css` : ajustements visuels légers au-dessus du thème Fiori Horizon.
 
@@ -75,16 +75,23 @@ Dans `SalesOrderDetail.controller.js`, le paramètre `{orderId}` est lu dans `_o
 
 ## Modèles de données
 
-Le modèle par défaut est un `sap.ui.model.json.JSONModel` chargé depuis `webapp/model/mockData.json`.
+Le modèle par défaut est un `sap.ui.model.odata.v4.ODataModel` configuré dans `webapp/manifest.json`.
 
-Principales branches :
+Service local attendu :
 
-- `/kpis` : KPI cards du tableau de bord.
-- `/salesOrders` : commandes, données d'en-tête, lignes et étapes du processus SD.
-- `/alerts` : alertes opérationnelles SD.
-- `/analytics` : datasets alimentant les `VizFrame`.
-- `/filters` : listes de valeurs pour les filtres.
-- `/topCustomers` et `/topMaterials` : classements affichés dans le dashboard.
+```text
+http://localhost:4004/odata/v4/sd/
+```
+
+Principales entités OData :
+
+- `/SalesOrders` : commandes, données d'en-tête, lignes et étapes du processus SD.
+- `/SdAlerts` : alertes opérationnelles SD.
+- `/RevenueByMonth`, `/RevenueByCustomer`, `/RevenueBySalesOrg`, `/OperationalTrend` : datasets des `VizFrame`.
+- `/TopCustomers` et `/TopMaterials` : classements affichés dans le dashboard.
+- `/dashboardKpis(...)` : action OData V4 utilisée pour alimenter les KPI cards.
+
+Les modèles nommés `device`, `ui` et `dashboard` restent des `JSONModel` locaux pour l'état d'interface, les filtres et l'affichage synthétique des KPI.
 
 Le fichier `formatter.js` centralise la conversion des codes métier vers les états UI5 :
 
@@ -111,12 +118,12 @@ Les codes couleur suivent les états Fiori :
 
 ## Évolution CAP, CDS et OData
 
-Un squelette CAP est disponible dans `db/` et `srv/`. Il expose les mêmes concepts métier que le mock JSON sous forme d'entités OData V4.
+Un squelette CAP est disponible dans `db/` et `srv/`. Il expose les concepts métier du cockpit sous forme d'entités OData V4.
 
-Pour passer du mock à un backend SAP BTP CAP ou SAP S/4HANA :
+Pour connecter ensuite SAP S/4HANA :
 
-1. Remplacer le `JSONModel` par un `ODataModel` V4 ou V2 dans `manifest.json`.
-2. Définir des entités CDS proches du modèle UI :
+1. Remplacer les CSV CAP par des vues CDS ou des appels vers S/4HANA.
+2. Conserver des entités proches du modèle UI :
    - `SalesOrders`
    - `SalesOrderItems`
    - `Deliveries`
@@ -136,7 +143,7 @@ Pour passer du mock à un backend SAP BTP CAP ou SAP S/4HANA :
    - afficher facture
    - gérer blocage crédit
 
-Le code actuel garde les chemins de binding simples afin de faciliter cette migration.
+Le code actuel garde les chemins de binding OData simples afin de faciliter cette migration.
 
 Voir aussi `docs/odata-migration.md`.
 

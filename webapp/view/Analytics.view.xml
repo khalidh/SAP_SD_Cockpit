@@ -15,7 +15,7 @@
             <Title text="CA par mois" level="H3" class="sdSectionTitle"/>
             <viz:VizFrame id="revenueByMonthChart" uiConfig="{applicationSet:'fiori'}" vizType="column" height="320px" width="100%">
               <viz:dataset>
-                <viz.data:FlattenedDataset data="{/analytics/revenueByMonth}">
+                <viz.data:FlattenedDataset data="{path:'/RevenueByMonth', parameters: {$orderby: 'sortNo asc'}}">
                   <viz.data:dimensions>
                     <viz.data:DimensionDefinition name="Mois" value="{month}"/>
                   </viz.data:dimensions>
@@ -35,7 +35,7 @@
             <Title text="CA par client" level="H3" class="sdSectionTitle"/>
             <viz:VizFrame id="revenueByCustomerChart" uiConfig="{applicationSet:'fiori'}" vizType="bar" height="320px" width="100%">
               <viz:dataset>
-                <viz.data:FlattenedDataset data="{/analytics/revenueByCustomer}">
+                <viz.data:FlattenedDataset data="{path:'/RevenueByCustomer', parameters: {$orderby: 'revenue desc'}}">
                   <viz.data:dimensions>
                     <viz.data:DimensionDefinition name="Client" value="{customer}"/>
                   </viz.data:dimensions>
@@ -55,7 +55,7 @@
             <Title text="CA par organisation commerciale" level="H3" class="sdSectionTitle"/>
             <viz:VizFrame id="revenueBySalesOrgChart" uiConfig="{applicationSet:'fiori'}" vizType="donut" height="320px" width="100%">
               <viz:dataset>
-                <viz.data:FlattenedDataset data="{/analytics/revenueBySalesOrg}">
+                <viz.data:FlattenedDataset data="{/RevenueBySalesOrg}">
                   <viz.data:dimensions>
                     <viz.data:DimensionDefinition name="Organisation" value="{salesOrg}"/>
                   </viz.data:dimensions>
@@ -75,7 +75,7 @@
             <Title text="Retards et commandes ouvertes" level="H3" class="sdSectionTitle"/>
             <viz:VizFrame id="delaysChart" uiConfig="{applicationSet:'fiori'}" vizType="line" height="320px" width="100%">
               <viz:dataset>
-                <viz.data:FlattenedDataset data="{/analytics/operationalTrend}">
+                <viz.data:FlattenedDataset data="{/OperationalTrend}">
                   <viz.data:dimensions>
                     <viz.data:DimensionDefinition name="Semaine" value="{week}"/>
                   </viz.data:dimensions>

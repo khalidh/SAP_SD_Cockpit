@@ -8,11 +8,11 @@
       <VBox class="sdContent sapUiResponsiveContentPadding" renderType="Bare">
         <OverflowToolbar class="sdTableToolbar">
           <SearchField id="customerSearch" width="16rem" placeholder="Client ou n° commande" search=".onSearch" liveChange=".onSearch"/>
-          <ComboBox id="salesOrgFilter" width="12rem" placeholder="Org. commerciale" items="{/filters/salesOrganizations}" selectionChange=".onSearch">
-            <core:Item key="{key}" text="{text}"/>
+          <ComboBox id="salesOrgFilter" width="12rem" placeholder="Org. commerciale" items="{ui>/filters/salesOrganizations}" selectionChange=".onSearch">
+            <core:Item key="{ui>key}" text="{ui>text}"/>
           </ComboBox>
-          <ComboBox id="statusFilter" width="12rem" placeholder="Statut" items="{/filters/orderStatuses}" selectionChange=".onSearch">
-            <core:Item key="{key}" text="{text}"/>
+          <ComboBox id="statusFilter" width="12rem" placeholder="Statut" items="{ui>/filters/orderStatuses}" selectionChange=".onSearch">
+            <core:Item key="{ui>key}" text="{ui>text}"/>
           </ComboBox>
           <DatePicker id="dateFromFilter" width="11rem" placeholder="Date début" valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" change=".onSearch"/>
           <Input id="minAmountFilter" width="10rem" type="Number" placeholder="Montant min." submit=".onSearch"/>
@@ -26,7 +26,7 @@
           growingThreshold="20"
           mode="{device>/listMode}"
           itemPress=".onOrderPress"
-          items="{/salesOrders}">
+          items="{/SalesOrders}">
           <columns>
             <Column><Text text="Commande"/></Column>
             <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Client"/></Column>

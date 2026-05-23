@@ -2,7 +2,7 @@
 
 Ce projet contient maintenant deux couches :
 
-- `webapp/` : cockpit SAPUI5 freestyle branché sur un `JSONModel`.
+- `webapp/` : cockpit SAPUI5 freestyle branché sur le service OData V4 CAP.
 - `db/` et `srv/` : squelette CAP exposant les mêmes concepts en OData V4.
 
 ## Service exposé
@@ -21,15 +21,15 @@ Le service CAP est déclaré dans `srv/sales-service.cds` :
 /odata/v4/sd/dashboardKpis()
 ```
 
-## Bascule UI5
+## Configuration UI5 actuelle
 
-Dans `manifest.json`, remplacer le modèle JSON par un modèle OData V4 :
+Le `manifest.json` utilise le modèle OData V4 suivant :
 
 ```json
 {
   "dataSources": {
     "sdService": {
-      "uri": "/odata/v4/sd/",
+      "uri": "http://localhost:4004/odata/v4/sd/",
       "type": "OData",
       "settings": {
         "odataVersion": "4.0"
@@ -49,11 +49,16 @@ Dans `manifest.json`, remplacer le modèle JSON par un modèle OData V4 :
 }
 ```
 
-Ensuite, adapter les bindings :
+Les bindings principaux utilisent maintenant les entités OData :
 
-- `/salesOrders` devient `/SalesOrders`.
-- `/alerts` devient `/SdAlerts`.
-- `/analytics/revenueByMonth` devient `/RevenueByMonth`.
+- `/SalesOrders`
+- `/SdAlerts`
+- `/RevenueByMonth`
+- `/RevenueByCustomer`
+- `/RevenueBySalesOrg`
+- `/OperationalTrend`
+- `/TopCustomers`
+- `/TopMaterials`
 - Le détail commande peut utiliser `/SalesOrders(ID)` ou une route par `orderId` avec filtre serveur.
 
 ## Commandes

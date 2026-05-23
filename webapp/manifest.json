@@ -10,9 +10,12 @@
       "version": "1.0.0"
     },
     "dataSources": {
-      "mockSalesData": {
-        "uri": "model/mockData.json",
-        "type": "JSON"
+      "sdService": {
+        "uri": "http://localhost:4004/odata/v4/sd/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
       }
     }
   },
@@ -51,9 +54,13 @@
     },
     "models": {
       "": {
-        "type": "sap.ui.model.json.JSONModel",
-        "dataSource": "mockSalesData",
-        "preload": true
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "dataSource": "sdService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true
+        }
       },
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",

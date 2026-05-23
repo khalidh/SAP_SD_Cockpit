@@ -7,6 +7,20 @@ sap.ui.define([
   return Controller.extend("sd.sales.cockpit.controller.Dashboard", {
     formatter: formatter,
 
+    onInit: function () {
+      this._loadDashboardKpis();
+    },
+
+    _loadDashboardKpis: function () {
+      var oModel = this.getView().getModel();
+      var oDashboardModel = this.getOwnerComponent().getModel("dashboard");
+      var oAction = oModel.bindContext("/dashboardKpis(...)");
+
+      oAction.execute().then(function () {
+        oDashboardModel.setData(oAction.getBoundContext().getObject());
+      });
+    },
+
     onNavToSalesOrders: function () {
       this.getOwnerComponent().getRouter().navTo("salesOrders");
     },

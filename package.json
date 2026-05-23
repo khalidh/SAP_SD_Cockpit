@@ -22,6 +22,9 @@
           "url": "db.sqlite"
         }
       }
+    },
+    "server": {
+      "cors": true
     }
   }
 }

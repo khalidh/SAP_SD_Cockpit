@@ -1,0 +1,10 @@
+ID;parent_ID;stepDate;title;description;owner;icon;sequence
+aaaaaaaa-1111-1111-1111-111111111001;22222222-2222-2222-2222-222222222281;2026-05-02T09:12:00Z;Commande créée;VA01 - Commande standard enregistrée;ADV Lyon;sap-icon://sales-order;10
+aaaaaaaa-1111-1111-1111-111111111002;22222222-2222-2222-2222-222222222281;2026-05-04T15:40:00Z;Livraison partielle;VL01N - Livraison 8000048120;Logistique;sap-icon://shipping-status;20
+aaaaaaaa-1111-1111-1111-111111111003;22222222-2222-2222-2222-222222222281;2026-05-05T11:05:00Z;Sortie marchandise;Post Goods Issue partiel;Entrepôt FR01;sap-icon://inventory;30
+aaaaaaaa-2222-2222-2222-222222222001;22222222-2222-2222-2222-222222222507;2026-05-07T10:21:00Z;Commande créée;Contrôle crédit déclenché automatiquement;ADV Sud;sap-icon://sales-order;10
+aaaaaaaa-2222-2222-2222-222222222002;22222222-2222-2222-2222-222222222507;2026-05-07T10:22:00Z;Blocage crédit;Horizon de crédit dépassé;Crédit management;sap-icon://credit-card;20
+aaaaaaaa-3333-3333-3333-333333333001;22222222-2222-2222-2222-222222222553;2026-05-11T08:36:00Z;Commande créée;VA01 - Commande service;ADV Paris;sap-icon://sales-order;10
+aaaaaaaa-3333-3333-3333-333333333002;22222222-2222-2222-2222-222222222553;2026-05-12T14:10:00Z;Facture créée;VF01 - Facture 9000084127;Facturation;sap-icon://customer-financial-fact-sheet;20
+aaaaaaaa-3333-3333-3333-333333333003;22222222-2222-2222-2222-222222222553;2026-05-18T09:00:00Z;Paiement reçu;Rapprochement bancaire effectué;Comptabilité;sap-icon://payment-approval;30
+aaaaaaaa-4444-4444-4444-444444444001;22222222-2222-2222-2222-222222222609;2026-05-16T16:44:00Z;Commande créée;Disponibilité ATP confirmée partiellement;Inside Sales;sap-icon://sales-order;10
