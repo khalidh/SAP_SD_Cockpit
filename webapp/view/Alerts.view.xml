@@ -17,6 +17,9 @@
           <ComboBox id="alertTypeFilter" width="16rem" placeholder="Type d'alerte" items="{ui>/filters/alertTypes}" selectionChange=".onFilter">
             <core:Item key="{ui>key}" text="{ui>text}"/>
           </ComboBox>
+          <ComboBox id="processStatusFilter" width="12rem" placeholder="Traitement" items="{ui>/filters/alertProcessStatuses}" selectionChange=".onFilter">
+            <core:Item key="{ui>key}" text="{ui>text}"/>
+          </ComboBox>
           <ToolbarSpacer/>
           <Button icon="sap-icon://refresh" text="Rafraîchir" press=".onRefresh"/>
         </OverflowToolbar>
@@ -33,11 +36,16 @@
             <firstStatus>
               <ObjectStatus text="{statusText}" state="{severity}"/>
             </firstStatus>
+            <secondStatus>
+              <ObjectStatus text="{path:'processStatus', formatter:'.formatter.processStatusText'}" state="{path:'processStatus', formatter:'.formatter.processStatusState'}"/>
+            </secondStatus>
             <attributes>
               <ObjectAttribute title="Référence" text="{reference}"/>
               <ObjectAttribute title="Client" text="{customerName}"/>
               <ObjectAttribute title="Échéance" text="{dueDate}"/>
               <ObjectAttribute title="Responsable" text="{owner}"/>
+              <ObjectAttribute title="Assigné à" text="{assignee}"/>
+              <ObjectAttribute title="Commentaire" text="{comment}"/>
             </attributes>
           </ObjectListItem>
         </List>

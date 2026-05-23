@@ -59,6 +59,7 @@
         "settings": {
           "synchronizationMode": "None",
           "operationMode": "Server",
+          "updateGroupId": "alerts",
           "autoExpandSelect": true
         }
       },

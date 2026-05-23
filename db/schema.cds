@@ -59,11 +59,15 @@ entity SdAlerts : cuid, managed {
   typeText     : String(60);
   severity     : String(10);
   statusText   : String(40);
+  processStatus : String(20);
   title        : String(120);
   reference    : String(20);
   customerName : String(80);
   dueDate      : Date;
   owner        : String(60);
+  assignee     : String(60);
+  comment      : String(255);
+  resolvedAt   : Timestamp;
   amount       : Decimal(15, 2);
   currency     : String(3);
 }

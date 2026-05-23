@@ -38,6 +38,18 @@ sap.ui.define([
             { key: "STOCK_SHORTAGE", text: "Rupture de stock" },
             { key: "BILLING_PENDING", text: "Facture non générée" },
             { key: "CREDIT_EXCEEDED", text: "Dépassement crédit" }
+          ],
+          alertProcessStatuses: [
+            { key: "OPEN", text: "Ouverte" },
+            { key: "IN_PROGRESS", text: "En cours" },
+            { key: "RESOLVED", text: "Traitée" }
+          ],
+          assignees: [
+            { key: "Nadia ADV", text: "Nadia ADV" },
+            { key: "Karim Logistique", text: "Karim Logistique" },
+            { key: "Sofia Supply", text: "Sofia Supply" },
+            { key: "Mehdi Facturation", text: "Mehdi Facturation" },
+            { key: "Crédit management", text: "Crédit management" }
           ]
         }
       }), "ui");

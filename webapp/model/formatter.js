@@ -22,6 +22,24 @@ sap.ui.define([], function () {
       return sSeverity === "Error" ? "sap-icon://error" : "sap-icon://alert";
     },
 
+    processStatusText: function (sStatus) {
+      var mText = {
+        OPEN: "Ouverte",
+        IN_PROGRESS: "En cours",
+        RESOLVED: "Traitée"
+      };
+      return mText[sStatus] || sStatus || "";
+    },
+
+    processStatusState: function (sStatus) {
+      var mState = {
+        OPEN: "Error",
+        IN_PROGRESS: "Warning",
+        RESOLVED: "Success"
+      };
+      return mState[sStatus] || "None";
+    },
+
     amount: function (nValue, sCurrency) {
       if (nValue === null || nValue === undefined) {
         return "";

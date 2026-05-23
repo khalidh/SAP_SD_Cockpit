@@ -1,6 +1,6 @@
-ID;alertId;type;typeText;severity;statusText;title;reference;customerName;dueDate;owner;amount;currency
-44444444-4444-4444-4444-444444444001;A-1001;CREDIT_BLOCK;Blocage crédit;Error;Bloqué;Commande bloquée par contrôle crédit;5000012507;Senso Habitat;2026-05-23;Crédit management;29500.00;EUR
-44444444-4444-4444-4444-444444444002;A-1002;DELIVERY_DELAY;Livraison en retard;Error;En retard;Livraison non sortie marchandise;8000048152;Medialux Distribution;2026-05-21;Logistique DE01;67200.00;EUR
-44444444-4444-4444-4444-444444444003;A-1003;STOCK_SHORTAGE;Rupture de stock;Warning;À surveiller;ATP insuffisant pour module X4;MAT-200481;Groupe Nova Retail;2026-05-27;Approvisionnement;0.00;PC
-44444444-4444-4444-4444-444444444004;A-1004;BILLING_PENDING;Facture non générée;Warning;À facturer;Livraison facturable sans facture;8000048120;Groupe Nova Retail;2026-05-24;Facturation;36000.00;EUR
-44444444-4444-4444-4444-444444444005;A-1005;CREDIT_EXCEEDED;Dépassement crédit;Error;Critique;Encours client au-dessus de la limite;10000201;Senso Habitat;2026-05-23;Crédit management;118000.00;EUR
+ID;alertId;type;typeText;severity;statusText;processStatus;title;reference;customerName;dueDate;owner;assignee;comment;resolvedAt;amount;currency
+44444444-4444-4444-4444-444444444001;A-1001;CREDIT_BLOCK;Blocage crédit;Error;Bloqué;OPEN;Commande bloquée par contrôle crédit;5000012507;Senso Habitat;2026-05-23;Crédit management;Nadia ADV;Contrôler limite et encours avant libération;;29500.00;EUR
+44444444-4444-4444-4444-444444444002;A-1002;DELIVERY_DELAY;Livraison en retard;Error;En retard;IN_PROGRESS;Livraison non sortie marchandise;8000048152;Medialux Distribution;2026-05-21;Logistique DE01;Karim Logistique;Relance entrepôt en cours;;67200.00;EUR
+44444444-4444-4444-4444-444444444003;A-1003;STOCK_SHORTAGE;Rupture de stock;Warning;À surveiller;OPEN;ATP insuffisant pour module X4;MAT-200481;Groupe Nova Retail;2026-05-27;Approvisionnement;Sofia Supply;Proposition de livraison partielle à valider;;0.00;PC
+44444444-4444-4444-4444-444444444004;A-1004;BILLING_PENDING;Facture non générée;Warning;À facturer;OPEN;Livraison facturable sans facture;8000048120;Groupe Nova Retail;2026-05-24;Facturation;Mehdi Facturation;Vérifier blocage facture avant VF01;;36000.00;EUR
+44444444-4444-4444-4444-444444444005;A-1005;CREDIT_EXCEEDED;Dépassement crédit;Error;Critique;IN_PROGRESS;Encours client au-dessus de la limite;10000201;Senso Habitat;2026-05-23;Crédit management;Nadia ADV;Demande d'acompte transmise au commercial;;118000.00;EUR

@@ -109,6 +109,7 @@ L'application utilise des composants SAPUI5 standards :
 - `sap.m.IconTabBar` pour les classements dashboard.
 - `sap.viz.ui5.controls.VizFrame` pour les graphiques analytiques.
 - `sap.m.MessageStrip` et `sap.m.List` pour les messages et alertes.
+- `sap.m.Dialog`, `Select` et `TextArea` pour traiter les alertes SD directement depuis le cockpit.
 
 Les codes couleur suivent les états Fiori :
 
@@ -146,6 +147,17 @@ Pour connecter ensuite SAP S/4HANA :
 Le code actuel garde les chemins de binding OData simples afin de faciliter cette migration.
 
 Voir aussi `docs/odata-migration.md`.
+
+## Traitement des alertes
+
+L'écran `Alertes SD` permet maintenant de mettre à jour une alerte via OData V4 :
+
+- statut de traitement : ouverte, en cours, traitée ;
+- assignation à un responsable ;
+- commentaire ADV ;
+- horodatage de résolution lorsque l'alerte est marquée comme traitée.
+
+Ces changements sont persistés dans l'entité CAP `SdAlerts`.
 
 ## Lancement local
 
