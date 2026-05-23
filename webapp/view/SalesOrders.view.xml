@@ -1,0 +1,54 @@
+<mvc:View
+  controllerName="sd.sales.cockpit.controller.SalesOrders"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <Page title="Commandes clients" class="sdPage" showNavButton="true" navButtonPress=".onNavBack">
+    <content>
+      <VBox class="sdContent sapUiResponsiveContentPadding" renderType="Bare">
+        <OverflowToolbar class="sdTableToolbar">
+          <SearchField id="customerSearch" width="16rem" placeholder="Client ou n° commande" search=".onSearch" liveChange=".onSearch"/>
+          <ComboBox id="salesOrgFilter" width="12rem" placeholder="Org. commerciale" items="{/filters/salesOrganizations}" selectionChange=".onSearch">
+            <core:Item key="{key}" text="{text}"/>
+          </ComboBox>
+          <ComboBox id="statusFilter" width="12rem" placeholder="Statut" items="{/filters/orderStatuses}" selectionChange=".onSearch">
+            <core:Item key="{key}" text="{text}"/>
+          </ComboBox>
+          <DatePicker id="dateFromFilter" width="11rem" placeholder="Date début" valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" change=".onSearch"/>
+          <Input id="minAmountFilter" width="10rem" type="Number" placeholder="Montant min." submit=".onSearch"/>
+          <ToolbarSpacer/>
+          <Button icon="sap-icon://clear-filter" text="Réinitialiser" press=".onResetFilters"/>
+        </OverflowToolbar>
+
+        <Table
+          id="ordersTable"
+          growing="true"
+          growingThreshold="20"
+          mode="{device>/listMode}"
+          itemPress=".onOrderPress"
+          items="{/salesOrders}">
+          <columns>
+            <Column><Text text="Commande"/></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Client"/></Column>
+            <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Org. commerciale"/></Column>
+            <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Date"/></Column>
+            <Column hAlign="End"><Text text="Montant"/></Column>
+            <Column><Text text="Statut"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem type="Navigation">
+              <cells>
+                <ObjectIdentifier title="{orderId}" text="{salesDocumentType}"/>
+                <ObjectIdentifier title="{customerName}" text="{customerId}"/>
+                <Text text="{salesOrg} / {distributionChannel} / {division}"/>
+                <Text text="{orderDate}"/>
+                <ObjectNumber number="{amount}" unit="{currency}" state="{path:'statusCode', formatter:'.formatter.statusState'}"/>
+                <ObjectStatus text="{statusText}" state="{path:'statusCode', formatter:'.formatter.statusState'}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

@@ -1,0 +1,132 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "sd.sales.cockpit",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "SD Sales Cockpit",
+    "description": "Cockpit SAP SD pour piloter les commandes, livraisons, factures, blocages et indicateurs commerciaux.",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "mockSalesData": {
+        "uri": "model/mockData.json",
+        "type": "JSON"
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://sales-order"
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "sd.sales.cockpit.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    },
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {},
+        "sap.f": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.uxap": {},
+        "sap.viz": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "mockSalesData",
+        "preload": true
+      },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sd.sales.cockpit.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "sd.sales.cockpit.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        {
+          "name": "dashboard",
+          "pattern": "",
+          "target": "dashboard"
+        },
+        {
+          "name": "salesOrders",
+          "pattern": "sales-orders",
+          "target": "salesOrders"
+        },
+        {
+          "name": "salesOrderDetail",
+          "pattern": "sales-orders/{orderId}",
+          "target": "salesOrderDetail"
+        },
+        {
+          "name": "alerts",
+          "pattern": "alerts",
+          "target": "alerts"
+        },
+        {
+          "name": "analytics",
+          "pattern": "analytics",
+          "target": "analytics"
+        }
+      ],
+      "targets": {
+        "dashboard": {
+          "viewName": "Dashboard",
+          "viewId": "Dashboard"
+        },
+        "salesOrders": {
+          "viewName": "SalesOrders",
+          "viewId": "SalesOrders"
+        },
+        "salesOrderDetail": {
+          "viewName": "SalesOrderDetail",
+          "viewId": "SalesOrderDetail"
+        },
+        "alerts": {
+          "viewName": "Alerts",
+          "viewId": "Alerts"
+        },
+        "analytics": {
+          "viewName": "Analytics",
+          "viewId": "Analytics"
+        }
+      }
+    }
+  }
+}

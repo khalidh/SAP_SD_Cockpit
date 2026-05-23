@@ -1,0 +1,100 @@
+<mvc:View
+  controllerName="sd.sales.cockpit.controller.Dashboard"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:layout="sap.ui.layout">
+  <Page title="SD Sales Cockpit" class="sdPage" showNavButton="false">
+    <headerContent>
+      <Button icon="sap-icon://sales-order" text="Commandes" press=".onNavToSalesOrders"/>
+      <Button icon="sap-icon://alert" text="Alertes" type="Emphasized" press=".onNavToAlerts"/>
+      <Button icon="sap-icon://business-objects-experience" text="Analytique" press=".onNavToAnalytics"/>
+    </headerContent>
+    <content>
+      <VBox class="sdContent sapUiResponsiveContentPadding" renderType="Bare">
+        <MessageStrip
+          text="Vue de pilotage ADV : priorisez les blocages crédit, les retards de livraison et les factures à générer."
+          type="Information"
+          showIcon="true"
+          class="sapUiSmallMarginBottom"/>
+
+        <layout:Grid defaultSpan="XL3 L3 M6 S12" hSpacing="1" vSpacing="1" class="sdKpiGrid">
+          <GenericTile header="CA du mois" subheader="Net facturé" frameType="OneByOne" press=".onNavToAnalytics" class="sdTile">
+            <TileContent unit="{/kpis/monthlyRevenue/currency}">
+              <NumericContent value="{/kpis/monthlyRevenue/value}" scale="K" indicator="Up" valueColor="Good" icon="sap-icon://sales-quote"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Commandes ouvertes" subheader="À suivre" frameType="OneByOne" press=".onNavToSalesOrders" class="sdTile">
+            <TileContent>
+              <NumericContent value="{/kpis/openOrders}" valueColor="Critical" icon="sap-icon://sales-order"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Livraisons en retard" subheader="Priorité logistique" frameType="OneByOne" press=".onNavToAlerts" class="sdTile">
+            <TileContent>
+              <NumericContent value="{/kpis/delayedDeliveries}" valueColor="Error" icon="sap-icon://shipping-status"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Factures en attente" subheader="À générer" frameType="OneByOne" press=".onNavToAlerts" class="sdTile">
+            <TileContent>
+              <NumericContent value="{/kpis/pendingInvoices}" valueColor="Critical" icon="sap-icon://customer-financial-fact-sheet"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Blocages crédit" subheader="Clients à risque" frameType="OneByOne" press=".onNavToAlerts" class="sdTile">
+            <TileContent>
+              <NumericContent value="{/kpis/creditBlockedOrders}" valueColor="Error" icon="sap-icon://credit-card"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Taux de service" subheader="Livraisons à l'heure" frameType="OneByOne" press=".onNavToAnalytics" class="sdTile">
+            <TileContent unit="%">
+              <NumericContent value="{/kpis/serviceLevel}" valueColor="Good" icon="sap-icon://complete"/>
+            </TileContent>
+          </GenericTile>
+        </layout:Grid>
+
+        <IconTabBar expandable="false" class="sapUiMediumMarginTop">
+          <items>
+            <IconTabFilter key="customers" text="Top clients" icon="sap-icon://customer">
+              <Table items="{/topCustomers}">
+                <columns>
+                  <Column><Text text="Client"/></Column>
+                  <Column hAlign="End"><Text text="CA"/></Column>
+                  <Column hAlign="End"><Text text="Commandes"/></Column>
+                  <Column><Text text="Tendance"/></Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <ObjectIdentifier title="{name}" text="{id}"/>
+                      <ObjectNumber number="{revenue}" unit="EUR" state="Success"/>
+                      <Text text="{orders}"/>
+                      <ObjectStatus text="{trend}" state="{path:'trendStatus', formatter:'.formatter.statusState'}"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </IconTabFilter>
+            <IconTabFilter key="materials" text="Top articles" icon="sap-icon://product">
+              <Table items="{/topMaterials}">
+                <columns>
+                  <Column><Text text="Article"/></Column>
+                  <Column><Text text="Libellé"/></Column>
+                  <Column hAlign="End"><Text text="Qté"/></Column>
+                  <Column hAlign="End"><Text text="CA"/></Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <ObjectIdentifier title="{material}" text="{category}"/>
+                      <Text text="{description}"/>
+                      <Text text="{quantity}"/>
+                      <ObjectNumber number="{revenue}" unit="EUR" state="Success"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </IconTabFilter>
+          </items>
+        </IconTabBar>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

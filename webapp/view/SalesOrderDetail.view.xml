@@ -1,0 +1,104 @@
+<mvc:View
+  controllerName="sd.sales.cockpit.controller.SalesOrderDetail"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:uxap="sap.uxap">
+  <Page title="Détail commande" showNavButton="true" navButtonPress=".onNavBack" class="sdPage">
+    <content>
+      <uxap:ObjectPageLayout id="objectPage" showTitleInHeaderContent="true" class="sdContent">
+        <uxap:headerTitle>
+          <uxap:ObjectPageDynamicHeaderTitle>
+            <uxap:expandedHeading>
+              <Title text="{orderId}" level="H1"/>
+            </uxap:expandedHeading>
+            <uxap:snappedHeading>
+              <Title text="{orderId}" level="H2"/>
+            </uxap:snappedHeading>
+            <uxap:actions>
+              <Button text="Livraison" icon="sap-icon://shipping-status" press=".onShowDelivery"/>
+              <Button text="Facture" icon="sap-icon://customer-financial-fact-sheet" press=".onShowInvoice"/>
+              <Button text="Signaler" icon="sap-icon://flag" type="Emphasized" press=".onReportIssue"/>
+            </uxap:actions>
+          </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+          <ObjectStatus text="{statusText}" state="{path:'statusCode', formatter:'.formatter.statusState'}"/>
+          <ObjectNumber number="{amount}" unit="{currency}" state="{path:'statusCode', formatter:'.formatter.statusState'}"/>
+          <ObjectIdentifier title="{customerName}" text="{customerId}"/>
+          <Text text="{salesOrg} / {distributionChannel} / {division}"/>
+        </uxap:headerContent>
+
+        <uxap:sections>
+          <uxap:ObjectPageSection title="En-tête">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <VBox class="sapUiSmallMargin">
+                  <ObjectAttribute title="Client" text="{customerName} ({customerId})"/>
+                  <ObjectAttribute title="Date commande" text="{orderDate}"/>
+                  <ObjectAttribute title="Montant" text="{path:'amount', formatter:'.formatter.amount'}"/>
+                  <ObjectAttribute title="Organisation commerciale" text="{salesOrg}"/>
+                  <ObjectAttribute title="Canal" text="{distributionChannel}"/>
+                  <ObjectAttribute title="Secteur" text="{division}"/>
+                  <ObjectAttribute title="Incoterms" text="{incoterms}"/>
+                  <ObjectAttribute title="Conditions paiement" text="{paymentTerms}"/>
+                </VBox>
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+
+          <uxap:ObjectPageSection title="Lignes">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <Table items="{items}">
+                  <columns>
+                    <Column><Text text="Article"/></Column>
+                    <Column><Text text="Désignation"/></Column>
+                    <Column hAlign="End"><Text text="Qté"/></Column>
+                    <Column hAlign="End"><Text text="Prix"/></Column>
+                    <Column hAlign="End"><Text text="Remise"/></Column>
+                    <Column><Text text="Livraison"/></Column>
+                    <Column><Text text="Facturation"/></Column>
+                  </columns>
+                  <items>
+                    <ColumnListItem>
+                      <cells>
+                        <ObjectIdentifier title="{material}" text="{itemNo}"/>
+                        <Text text="{description}"/>
+                        <Text text="{quantity} {unit}"/>
+                        <ObjectNumber number="{netPrice}" unit="{currency}"/>
+                        <Text text="{discount} %"/>
+                        <ObjectStatus text="{deliveryStatusText}" state="{path:'deliveryStatusCode', formatter:'.formatter.statusState'}"/>
+                        <ObjectStatus text="{billingStatusText}" state="{path:'billingStatusCode', formatter:'.formatter.statusState'}"/>
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                </Table>
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+
+          <uxap:ObjectPageSection title="Timeline SD">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <List items="{processSteps}">
+                  <CustomListItem>
+                    <HBox class="sapUiSmallMargin" alignItems="Center">
+                      <core:Icon src="{icon}" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                      <VBox>
+                        <ObjectIdentifier title="{title}" text="{date}"/>
+                        <Text text="{description}"/>
+                        <ObjectStatus text="{owner}" state="Information"/>
+                      </VBox>
+                    </HBox>
+                  </CustomListItem>
+                </List>
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+        </uxap:sections>
+      </uxap:ObjectPageLayout>
+    </content>
+  </Page>
+</mvc:View>

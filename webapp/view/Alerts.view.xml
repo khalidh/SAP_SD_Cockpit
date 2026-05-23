@@ -1,0 +1,47 @@
+<mvc:View
+  controllerName="sd.sales.cockpit.controller.Alerts"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <Page title="Alertes SD" showNavButton="true" navButtonPress=".onNavBack" class="sdPage">
+    <content>
+      <VBox class="sdContent sapUiResponsiveContentPadding" renderType="Bare">
+        <OverflowToolbar class="sdTableToolbar">
+          <SegmentedButton id="severityFilter" selectionChange=".onFilter">
+            <items>
+              <SegmentedButtonItem key="" text="Toutes"/>
+              <SegmentedButtonItem key="Error" text="Critiques"/>
+              <SegmentedButtonItem key="Warning" text="Attention"/>
+            </items>
+          </SegmentedButton>
+          <ComboBox id="alertTypeFilter" width="16rem" placeholder="Type d'alerte" items="{/filters/alertTypes}" selectionChange=".onFilter">
+            <core:Item key="{key}" text="{text}"/>
+          </ComboBox>
+          <ToolbarSpacer/>
+          <Button icon="sap-icon://refresh" text="Rafraîchir" press=".onRefresh"/>
+        </OverflowToolbar>
+
+        <List id="alertsList" items="{/alerts}" growing="true">
+          <ObjectListItem
+            title="{title}"
+            number="{amount}"
+            numberUnit="{currency}"
+            type="Active"
+            press=".onAlertPress"
+            intro="{typeText}"
+            icon="{path:'severity', formatter:'.formatter.alertIcon'}">
+            <firstStatus>
+              <ObjectStatus text="{statusText}" state="{severity}"/>
+            </firstStatus>
+            <attributes>
+              <ObjectAttribute title="Référence" text="{reference}"/>
+              <ObjectAttribute title="Client" text="{customerName}"/>
+              <ObjectAttribute title="Échéance" text="{dueDate}"/>
+              <ObjectAttribute title="Responsable" text="{owner}"/>
+            </attributes>
+          </ObjectListItem>
+        </List>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

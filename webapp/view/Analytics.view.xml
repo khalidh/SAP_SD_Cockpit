@@ -1,0 +1,98 @@
+<mvc:View
+  controllerName="sd.sales.cockpit.controller.Analytics"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:viz="sap.viz.ui5.controls"
+  xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+  xmlns:viz.data="sap.viz.ui5.data"
+  xmlns:layout="sap.ui.layout">
+  <Page title="Analytique SD" showNavButton="true" navButtonPress=".onNavBack" class="sdPage">
+    <content>
+      <VBox class="sdContent sapUiResponsiveContentPadding" renderType="Bare">
+        <MessageStrip text="Les graphiques utilisent sap.viz.ui5.controls.VizFrame et pourront être alimentés par OData sans changer les vues." type="Information" showIcon="true"/>
+        <layout:Grid defaultSpan="XL6 L6 M12 S12" hSpacing="1" vSpacing="1" class="sapUiMediumMarginTop">
+          <VBox class="sdSection">
+            <Title text="CA par mois" level="H3" class="sdSectionTitle"/>
+            <viz:VizFrame id="revenueByMonthChart" uiConfig="{applicationSet:'fiori'}" vizType="column" height="320px" width="100%">
+              <viz:dataset>
+                <viz.data:FlattenedDataset data="{/analytics/revenueByMonth}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="Mois" value="{month}"/>
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition name="CA" value="{revenue}"/>
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds>
+                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="CA"/>
+                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Mois"/>
+              </viz:feeds>
+            </viz:VizFrame>
+          </VBox>
+
+          <VBox class="sdSection">
+            <Title text="CA par client" level="H3" class="sdSectionTitle"/>
+            <viz:VizFrame id="revenueByCustomerChart" uiConfig="{applicationSet:'fiori'}" vizType="bar" height="320px" width="100%">
+              <viz:dataset>
+                <viz.data:FlattenedDataset data="{/analytics/revenueByCustomer}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="Client" value="{customer}"/>
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition name="CA" value="{revenue}"/>
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds>
+                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="CA"/>
+                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Client"/>
+              </viz:feeds>
+            </viz:VizFrame>
+          </VBox>
+
+          <VBox class="sdSection">
+            <Title text="CA par organisation commerciale" level="H3" class="sdSectionTitle"/>
+            <viz:VizFrame id="revenueBySalesOrgChart" uiConfig="{applicationSet:'fiori'}" vizType="donut" height="320px" width="100%">
+              <viz:dataset>
+                <viz.data:FlattenedDataset data="{/analytics/revenueBySalesOrg}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="Organisation" value="{salesOrg}"/>
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition name="CA" value="{revenue}"/>
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds>
+                <viz.feeds:FeedItem uid="size" type="Measure" values="CA"/>
+                <viz.feeds:FeedItem uid="color" type="Dimension" values="Organisation"/>
+              </viz:feeds>
+            </viz:VizFrame>
+          </VBox>
+
+          <VBox class="sdSection">
+            <Title text="Retards et commandes ouvertes" level="H3" class="sdSectionTitle"/>
+            <viz:VizFrame id="delaysChart" uiConfig="{applicationSet:'fiori'}" vizType="line" height="320px" width="100%">
+              <viz:dataset>
+                <viz.data:FlattenedDataset data="{/analytics/operationalTrend}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="Semaine" value="{week}"/>
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition name="Retards" value="{delays}"/>
+                    <viz.data:MeasureDefinition name="Commandes ouvertes" value="{openOrders}"/>
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds>
+                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Retards,Commandes ouvertes"/>
+                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Semaine"/>
+              </viz:feeds>
+            </viz:VizFrame>
+          </VBox>
+        </layout:Grid>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

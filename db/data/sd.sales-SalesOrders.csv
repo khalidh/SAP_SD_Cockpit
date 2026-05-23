@@ -1,0 +1,5 @@
+ID;orderId;salesDocumentType;customerId;customerName;orderDate;amount;currency;salesOrg;distributionChannel;division;statusCode;statusText;incoterms;paymentTerms
+22222222-2222-2222-2222-222222222281;5000012481;OR - Commande standard;10000045;Groupe Nova Retail;2026-05-02;48600.00;EUR;FR01;10;00;PARTIAL;Partiellement livrée;DAP Paris;30 jours fin de mois
+22222222-2222-2222-2222-222222222507;5000012507;OR - Commande standard;10000201;Senso Habitat;2026-05-07;29500.00;EUR;FR02;20;00;BLOCKED;Bloquée crédit;EXW Marseille;Paiement comptant
+22222222-2222-2222-2222-222222222553;5000012553;OR - Commande standard;10000072;Atelier Martin Pro;2026-05-11;18400.00;EUR;FR01;10;01;INVOICED;Facturée;CPT Lille;45 jours
+22222222-2222-2222-2222-222222222609;5000012609;OR - Commande standard;10000118;Medialux Distribution;2026-05-16;67200.00;EUR;DE01;30;00;OPEN;Ouverte;DAP Berlin;30 jours

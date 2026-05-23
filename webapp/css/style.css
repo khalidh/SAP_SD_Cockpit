@@ -1,0 +1,50 @@
+.sapMShellGlobalInnerBackground,
+.sdAppBackground {
+  background: #f5f6f7;
+}
+
+.sdPage .sapMPageEnableScrolling {
+  background: #f5f6f7;
+}
+
+.sdContent {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.sdKpiGrid {
+  gap: 0.75rem;
+}
+
+.sdTile {
+  min-width: 13rem;
+}
+
+.sdSection {
+  padding: 1rem;
+}
+
+.sdSectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.sdTableToolbar {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.sdStatusSuccess {
+  color: #107e3e;
+}
+
+.sdStatusWarning {
+  color: #df6e0c;
+}
+
+.sdStatusError {
+  color: #bb0000;
+}
+
+.sdChart {
+  min-height: 20rem;
+}

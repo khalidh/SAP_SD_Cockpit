@@ -1,0 +1,175 @@
+{
+  "kpis": {
+    "monthlyRevenue": {
+      "value": 842,
+      "currency": "EUR"
+    },
+    "openOrders": 128,
+    "delayedDeliveries": 17,
+    "pendingInvoices": 36,
+    "creditBlockedOrders": 9,
+    "serviceLevel": 94.6
+  },
+  "filters": {
+    "salesOrganizations": [
+      { "key": "FR01", "text": "FR01 - France Nord" },
+      { "key": "FR02", "text": "FR02 - France Sud" },
+      { "key": "DE01", "text": "DE01 - Allemagne" }
+    ],
+    "orderStatuses": [
+      { "key": "OPEN", "text": "Ouverte" },
+      { "key": "PARTIAL", "text": "Partiellement livrée" },
+      { "key": "DELIVERED", "text": "Livrée" },
+      { "key": "INVOICED", "text": "Facturée" },
+      { "key": "BLOCKED", "text": "Bloquée" }
+    ],
+    "alertTypes": [
+      { "key": "CREDIT_BLOCK", "text": "Blocage crédit" },
+      { "key": "DELIVERY_DELAY", "text": "Livraison en retard" },
+      { "key": "STOCK_SHORTAGE", "text": "Rupture de stock" },
+      { "key": "BILLING_PENDING", "text": "Facture non générée" },
+      { "key": "CREDIT_EXCEEDED", "text": "Dépassement crédit" }
+    ]
+  },
+  "topCustomers": [
+    { "id": "10000045", "name": "Groupe Nova Retail", "revenue": 184500, "orders": 28, "trend": "Hausse", "trendStatus": "OK" },
+    { "id": "10000072", "name": "Atelier Martin Pro", "revenue": 142800, "orders": 19, "trend": "Stable", "trendStatus": "OPEN" },
+    { "id": "10000118", "name": "Medialux Distribution", "revenue": 98600, "orders": 14, "trend": "Attention", "trendStatus": "PARTIAL" },
+    { "id": "10000201", "name": "Senso Habitat", "revenue": 76300, "orders": 11, "trend": "Risque crédit", "trendStatus": "BLOCKED" }
+  ],
+  "topMaterials": [
+    { "material": "MAT-100024", "description": "Kit installation premium", "category": "Accessoires", "quantity": 420, "revenue": 126000 },
+    { "material": "MAT-200481", "description": "Module connecté X4", "category": "Électronique", "quantity": 310, "revenue": 118900 },
+    { "material": "MAT-300118", "description": "Pack maintenance annuel", "category": "Service", "quantity": 86, "revenue": 77400 },
+    { "material": "MAT-500045", "description": "Armoire technique standard", "category": "Équipement", "quantity": 52, "revenue": 68100 }
+  ],
+  "salesOrders": [
+    {
+      "orderId": "5000012481",
+      "salesDocumentType": "OR - Commande standard",
+      "customerId": "10000045",
+      "customerName": "Groupe Nova Retail",
+      "orderDate": "2026-05-02",
+      "amount": 48600,
+      "currency": "EUR",
+      "salesOrg": "FR01",
+      "distributionChannel": "10",
+      "division": "00",
+      "statusCode": "PARTIAL",
+      "statusText": "Partiellement livrée",
+      "incoterms": "DAP Paris",
+      "paymentTerms": "30 jours fin de mois",
+      "items": [
+        { "itemNo": "10", "material": "MAT-100024", "description": "Kit installation premium", "quantity": 120, "unit": "PC", "netPrice": 300, "currency": "EUR", "discount": 5, "deliveryStatusCode": "DELIVERED", "deliveryStatusText": "Livrée", "billingStatusCode": "PENDING", "billingStatusText": "À facturer" },
+        { "itemNo": "20", "material": "MAT-200481", "description": "Module connecté X4", "quantity": 40, "unit": "PC", "netPrice": 315, "currency": "EUR", "discount": 2, "deliveryStatusCode": "PARTIAL", "deliveryStatusText": "Partielle", "billingStatusCode": "OPEN", "billingStatusText": "Ouverte" }
+      ],
+      "processSteps": [
+        { "date": "2026-05-02 09:12", "title": "Commande créée", "description": "VA01 - Commande standard enregistrée", "owner": "ADV Lyon", "icon": "sap-icon://sales-order" },
+        { "date": "2026-05-04 15:40", "title": "Livraison partielle", "description": "VL01N - Livraison 8000048120", "owner": "Logistique", "icon": "sap-icon://shipping-status" },
+        { "date": "2026-05-05 11:05", "title": "Sortie marchandise", "description": "Post Goods Issue partiel", "owner": "Entrepôt FR01", "icon": "sap-icon://inventory" }
+      ]
+    },
+    {
+      "orderId": "5000012507",
+      "salesDocumentType": "OR - Commande standard",
+      "customerId": "10000201",
+      "customerName": "Senso Habitat",
+      "orderDate": "2026-05-07",
+      "amount": 29500,
+      "currency": "EUR",
+      "salesOrg": "FR02",
+      "distributionChannel": "20",
+      "division": "00",
+      "statusCode": "BLOCKED",
+      "statusText": "Bloquée crédit",
+      "incoterms": "EXW Marseille",
+      "paymentTerms": "Paiement comptant",
+      "items": [
+        { "itemNo": "10", "material": "MAT-500045", "description": "Armoire technique standard", "quantity": 15, "unit": "PC", "netPrice": 1450, "currency": "EUR", "discount": 0, "deliveryStatusCode": "OPEN", "deliveryStatusText": "Non livrée", "billingStatusCode": "OPEN", "billingStatusText": "Ouverte" }
+      ],
+      "processSteps": [
+        { "date": "2026-05-07 10:21", "title": "Commande créée", "description": "Contrôle crédit déclenché automatiquement", "owner": "ADV Sud", "icon": "sap-icon://sales-order" },
+        { "date": "2026-05-07 10:22", "title": "Blocage crédit", "description": "Horizon de crédit dépassé", "owner": "Crédit management", "icon": "sap-icon://credit-card" }
+      ]
+    },
+    {
+      "orderId": "5000012553",
+      "salesDocumentType": "OR - Commande standard",
+      "customerId": "10000072",
+      "customerName": "Atelier Martin Pro",
+      "orderDate": "2026-05-11",
+      "amount": 18400,
+      "currency": "EUR",
+      "salesOrg": "FR01",
+      "distributionChannel": "10",
+      "division": "01",
+      "statusCode": "INVOICED",
+      "statusText": "Facturée",
+      "incoterms": "CPT Lille",
+      "paymentTerms": "45 jours",
+      "items": [
+        { "itemNo": "10", "material": "MAT-300118", "description": "Pack maintenance annuel", "quantity": 8, "unit": "PC", "netPrice": 2300, "currency": "EUR", "discount": 0, "deliveryStatusCode": "DELIVERED", "deliveryStatusText": "Livrée", "billingStatusCode": "INVOICED", "billingStatusText": "Facturée" }
+      ],
+      "processSteps": [
+        { "date": "2026-05-11 08:36", "title": "Commande créée", "description": "VA01 - Commande service", "owner": "ADV Paris", "icon": "sap-icon://sales-order" },
+        { "date": "2026-05-12 14:10", "title": "Facture créée", "description": "VF01 - Facture 9000084127", "owner": "Facturation", "icon": "sap-icon://customer-financial-fact-sheet" },
+        { "date": "2026-05-18 09:00", "title": "Paiement reçu", "description": "Rapprochement bancaire effectué", "owner": "Comptabilité", "icon": "sap-icon://payment-approval" }
+      ]
+    },
+    {
+      "orderId": "5000012609",
+      "salesDocumentType": "OR - Commande standard",
+      "customerId": "10000118",
+      "customerName": "Medialux Distribution",
+      "orderDate": "2026-05-16",
+      "amount": 67200,
+      "currency": "EUR",
+      "salesOrg": "DE01",
+      "distributionChannel": "30",
+      "division": "00",
+      "statusCode": "OPEN",
+      "statusText": "Ouverte",
+      "incoterms": "DAP Berlin",
+      "paymentTerms": "30 jours",
+      "items": [
+        { "itemNo": "10", "material": "MAT-200481", "description": "Module connecté X4", "quantity": 160, "unit": "PC", "netPrice": 420, "currency": "EUR", "discount": 3, "deliveryStatusCode": "OPEN", "deliveryStatusText": "À préparer", "billingStatusCode": "OPEN", "billingStatusText": "Ouverte" }
+      ],
+      "processSteps": [
+        { "date": "2026-05-16 16:44", "title": "Commande créée", "description": "Disponibilité ATP confirmée partiellement", "owner": "Inside Sales", "icon": "sap-icon://sales-order" }
+      ]
+    }
+  ],
+  "alerts": [
+    { "id": "A-1001", "type": "CREDIT_BLOCK", "typeText": "Blocage crédit", "severity": "Error", "statusText": "Bloqué", "title": "Commande bloquée par contrôle crédit", "reference": "5000012507", "customerName": "Senso Habitat", "dueDate": "2026-05-23", "owner": "Crédit management", "amount": 29500, "currency": "EUR" },
+    { "id": "A-1002", "type": "DELIVERY_DELAY", "typeText": "Livraison en retard", "severity": "Error", "statusText": "En retard", "title": "Livraison non sortie marchandise", "reference": "8000048152", "customerName": "Medialux Distribution", "dueDate": "2026-05-21", "owner": "Logistique DE01", "amount": 67200, "currency": "EUR" },
+    { "id": "A-1003", "type": "STOCK_SHORTAGE", "typeText": "Rupture de stock", "severity": "Warning", "statusText": "À surveiller", "title": "ATP insuffisant pour module X4", "reference": "MAT-200481", "customerName": "Groupe Nova Retail", "dueDate": "2026-05-27", "owner": "Approvisionnement", "amount": 0, "currency": "PC" },
+    { "id": "A-1004", "type": "BILLING_PENDING", "typeText": "Facture non générée", "severity": "Warning", "statusText": "À facturer", "title": "Livraison facturable sans facture", "reference": "8000048120", "customerName": "Groupe Nova Retail", "dueDate": "2026-05-24", "owner": "Facturation", "amount": 36000, "currency": "EUR" },
+    { "id": "A-1005", "type": "CREDIT_EXCEEDED", "typeText": "Dépassement crédit", "severity": "Error", "statusText": "Critique", "title": "Encours client au-dessus de la limite", "reference": "10000201", "customerName": "Senso Habitat", "dueDate": "2026-05-23", "owner": "Crédit management", "amount": 118000, "currency": "EUR" }
+  ],
+  "analytics": {
+    "revenueByMonth": [
+      { "month": "Jan", "revenue": 610000 },
+      { "month": "Fév", "revenue": 690000 },
+      { "month": "Mar", "revenue": 735000 },
+      { "month": "Avr", "revenue": 804000 },
+      { "month": "Mai", "revenue": 842000 }
+    ],
+    "revenueByCustomer": [
+      { "customer": "Nova Retail", "revenue": 184500 },
+      { "customer": "Atelier Martin", "revenue": 142800 },
+      { "customer": "Medialux", "revenue": 98600 },
+      { "customer": "Senso Habitat", "revenue": 76300 }
+    ],
+    "revenueBySalesOrg": [
+      { "salesOrg": "FR01", "revenue": 482000 },
+      { "salesOrg": "FR02", "revenue": 214000 },
+      { "salesOrg": "DE01", "revenue": 146000 }
+    ],
+    "operationalTrend": [
+      { "week": "S18", "delays": 8, "openOrders": 96 },
+      { "week": "S19", "delays": 11, "openOrders": 108 },
+      { "week": "S20", "delays": 17, "openOrders": 128 },
+      { "week": "S21", "delays": 13, "openOrders": 117 }
+    ]
+  }
+}

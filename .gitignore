@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.ui5/
+db.sqlite
+db.sqlite-shm
+db.sqlite-wal
+*.db
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
