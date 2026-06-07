@@ -5,6 +5,7 @@
   "description": "SAPUI5 freestyle SD Sales Cockpit with JSON mock data",
   "scripts": {
     "cap": "cds watch",
+    "build": "ui5 build --all --clean-dest",
     "start": "ui5 serve --open index.html",
     "serve": "ui5 serve"
   },
@@ -21,6 +22,9 @@
         "credentials": {
           "url": "db.sqlite"
         }
+      },
+      "auth": {
+        "kind": "dummy"
       }
     },
     "server": {

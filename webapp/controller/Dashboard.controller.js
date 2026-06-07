@@ -34,6 +34,10 @@ sap.ui.define([
 
     onNavToAnalytics: function () {
       this.getOwnerComponent().getRouter().navTo("analytics");
+    },
+
+    onNavToSapSandbox: function () {
+      this.getOwnerComponent().getRouter().navTo("sapSandbox");
     }
   });
 });

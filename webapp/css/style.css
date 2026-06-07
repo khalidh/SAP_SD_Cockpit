@@ -48,3 +48,7 @@
 .sdChart {
   min-height: 20rem;
 }
+
+.sdSandboxResponse textarea {
+  font-family: "72Mono", monospace;
+}

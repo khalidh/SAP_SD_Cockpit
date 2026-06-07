@@ -19,6 +19,8 @@ Le service CAP est déclaré dans `srv/sales-service.cds` :
 /odata/v4/sd/RevenueBySalesOrg
 /odata/v4/sd/OperationalTrend
 /odata/v4/sd/dashboardKpis()
+/odata/v4/sd/sapSandboxApis()
+/odata/v4/sd/callSapSandboxApi(...)
 ```
 
 ## Configuration UI5 actuelle
@@ -76,3 +78,14 @@ npm run cap
 ```
 
 Le service CAP est utile pour itérer sur le modèle métier avant de connecter SAP S/4HANA.
+
+## Proxy SAP Sandbox
+
+Le service CAP contient aussi deux actions pour tester les APIs SAP Business Accelerator Hub Sandbox depuis le backend :
+
+- `sapSandboxApis()` retourne les APIs autorisées par l'application.
+- `callSapSandboxApi(api, top, query)` appelle l'API demandée avec l'en-tête `APIKey`.
+
+La clé est lue depuis `SAP_SANDBOX_API_KEY`. Elle ne doit pas être placée dans le code UI5 ni committée.
+
+Les APIs déclarées dans `srv/sales-service.js` couvrent les 5 scénarios SD à tester dans le cockpit : Business Partner, Sales Order, Product, Delivery et Billing Document.

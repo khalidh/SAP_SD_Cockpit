@@ -3,7 +3,13 @@
   "sap.app": {
     "id": "sd.sales.cockpit",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
+    "i18n": {
+      "bundleUrl": "i18n/i18n.properties",
+      "supportedLocales": [
+        ""
+      ],
+      "fallbackLocale": ""
+    },
     "title": "SD Sales Cockpit",
     "description": "Cockpit SAP SD pour piloter les commandes, livraisons, factures, blocages et indicateurs commerciaux.",
     "applicationVersion": {
@@ -66,7 +72,11 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "sd.sales.cockpit.i18n.i18n"
+          "bundleName": "sd.sales.cockpit.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ],
+          "fallbackLocale": ""
         }
       }
     },
@@ -111,6 +121,11 @@
           "name": "analytics",
           "pattern": "analytics",
           "target": "analytics"
+        },
+        {
+          "name": "sapSandbox",
+          "pattern": "sap-sandbox",
+          "target": "sapSandbox"
         }
       ],
       "targets": {
@@ -133,6 +148,10 @@
         "analytics": {
           "viewName": "Analytics",
           "viewId": "Analytics"
+        },
+        "sapSandbox": {
+          "viewName": "SapSandbox",
+          "viewId": "SapSandbox"
         }
       }
     }

@@ -1,0 +1,90 @@
+<mvc:View
+  controllerName="sd.sales.cockpit.controller.SapSandbox"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:layout="sap.ui.layout">
+  <Page title="Sandbox SAP" class="sdPage" showNavButton="true" navButtonPress=".onNavBack" busy="{sandbox>/busy}">
+    <headerContent>
+      <Button icon="sap-icon://refresh" text="Actualiser" press=".onRefreshApis"/>
+    </headerContent>
+    <content>
+      <VBox class="sdContent sapUiResponsiveContentPadding" renderType="Bare">
+        <layout:Grid defaultSpan="XL3 L3 M6 S12" hSpacing="1" vSpacing="1">
+          <GenericTile header="Business Partner" subheader="API_BUSINESS_PARTNER" frameType="OneByOne" class="sdTile">
+            <TileContent>
+              <ImageContent src="sap-icon://customer"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Sales Order" subheader="API_SALES_ORDER_SRV" frameType="OneByOne" class="sdTile">
+            <TileContent>
+              <ImageContent src="sap-icon://sales-order"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Product" subheader="API_PRODUCT_SRV" frameType="OneByOne" class="sdTile">
+            <TileContent>
+              <ImageContent src="sap-icon://product"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Delivery" subheader="API_OUTBOUND_DELIVERY_SRV" frameType="OneByOne" class="sdTile">
+            <TileContent>
+              <ImageContent src="sap-icon://shipping-status"/>
+            </TileContent>
+          </GenericTile>
+          <GenericTile header="Billing" subheader="API_BILLING_DOCUMENT_SRV" frameType="OneByOne" class="sdTile">
+            <TileContent>
+              <ImageContent src="sap-icon://customer-financial-fact-sheet"/>
+            </TileContent>
+          </GenericTile>
+        </layout:Grid>
+
+        <Panel headerText="Appel API" class="sapUiMediumMarginTop">
+          <content>
+            <OverflowToolbar class="sdTableToolbar">
+              <ComboBox
+                width="18rem"
+                selectedKey="{sandbox>/selectedApi}"
+                items="{sandbox>/apis}"
+                selectionChange=".onApiChange">
+                <core:Item key="{sandbox>id}" text="{sandbox>label}"/>
+              </ComboBox>
+              <StepInput width="8rem" min="1" max="100" step="1" value="{sandbox>/top}"/>
+              <Input width="32rem" value="{sandbox>/query}" placeholder="$select=..."/>
+              <ToolbarSpacer/>
+              <Button icon="sap-icon://process" text="Appeler" type="Emphasized" press=".onCallApi"/>
+            </OverflowToolbar>
+          </content>
+        </Panel>
+
+        <Table items="{sandbox>/apis}" class="sapUiMediumMarginTop">
+          <columns>
+            <Column><Text text="API"/></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Service"/></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="EntitySet"/></Column>
+            <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Usage cockpit"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <ObjectIdentifier title="{sandbox>label}" text="{sandbox>id}"/>
+                <Text text="{sandbox>service}"/>
+                <Text text="{sandbox>entitySet}"/>
+                <Text text="{sandbox>description}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+
+        <Panel headerText="Réponse" class="sapUiMediumMarginTop">
+          <content>
+            <VBox renderType="Bare">
+              <ObjectStatus text="{= ${sandbox>/lastStatus} ? 'HTTP ' + ${sandbox>/lastStatus} : '' }" state="Success"/>
+              <Text text="{sandbox>/lastUrl}" wrapping="true" class="sapUiTinyMarginTop sapUiSmallMarginBottom"/>
+              <TextArea value="{sandbox>/response}" rows="18" width="100%" editable="false" class="sdSandboxResponse"/>
+            </VBox>
+          </content>
+        </Panel>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

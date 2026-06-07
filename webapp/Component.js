@@ -74,6 +74,17 @@ sap.ui.define([
         serviceLevel: 0
       }), "dashboard");
 
+      this.setModel(new JSONModel({
+        apis: [],
+        selectedApi: "c4cSalesOrders",
+        top: 5,
+        query: "$select=ObjectID",
+        busy: false,
+        lastStatus: "",
+        lastUrl: "",
+        response: ""
+      }), "sandbox");
+
       this.getRouter().initialize();
     }
   });

@@ -8,6 +8,7 @@
       <Button icon="sap-icon://sales-order" text="Commandes" press=".onNavToSalesOrders"/>
       <Button icon="sap-icon://alert" text="Alertes" type="Emphasized" press=".onNavToAlerts"/>
       <Button icon="sap-icon://business-objects-experience" text="Analytique" press=".onNavToAnalytics"/>
+      <Button icon="sap-icon://cloud" text="Sandbox SAP" press=".onNavToSapSandbox"/>
     </headerContent>
     <content>
       <VBox class="sdContent sapUiResponsiveContentPadding" renderType="Bare">
