@@ -74,14 +74,14 @@ Objets principaux :
 
 Ordre conseille dans ADT apres import abapGit :
 
-1. Activer d'abord les DDLS `ZSD_*`. Ils contiennent les instructions `define table` qui creent les tables de base.
+1. Activer d'abord les tables transparentes `ZSD_*`.
 2. Activer les vues `ZI_*`.
 3. Activer les vues `ZC_*`.
 4. Activer les behaviors et classes `ZBP_*`.
 5. Activer `ZSD_SALES_COCKPIT`.
 6. Publier le binding `ZSD_SALES_COCKPIT_O4`.
 
-Si les DDLS `ZSD_*` ne sont pas actifs, les vues `ZI_SD_*` echoueront avec
+Si les tables `ZSD_*` ne sont pas actives, les vues `ZI_SD_*` echoueront avec
 `The data source 'ZSD_*' does not exist or is not active`.
 
 ## Points d'attention
