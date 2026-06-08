@@ -8,7 +8,7 @@ already points abapGit to `/src/`.
 
 ## Object model
 
-- Tables: `ZSD_SO`, `ZSD_SO_ITEM`, `ZSD_SO_STEP`, `ZSD_ALERT`,
+- Source-based tables: `ZSD_SO`, `ZSD_SO_ITEM`, `ZSD_SO_STEP`, `ZSD_ALERT`,
   `ZSD_KPI`, `ZSD_TOPCUST`, `ZSD_TOPMAT`, `ZSD_REVMON`, `ZSD_REVCUST`,
   `ZSD_REVSORG`, `ZSD_OPTREND`
 - Transactional RAP BO: `ZI_SD_SALES_ORDER` with items and process steps
@@ -19,7 +19,8 @@ already points abapGit to `/src/`.
 
 ## Activation order
 
-1. Import/create the database tables.
+1. Activate the `ZSD_*` DDLS sources first. They contain the `define table`
+   statements that create the database tables.
 2. Activate interface CDS views `ZI_*`.
 3. Activate projection CDS views `ZC_*`.
 4. Activate behavior definitions `ZI_SD_SALES_ORDER`, `ZC_SD_SALES_ORDER`,
@@ -30,10 +31,9 @@ already points abapGit to `/src/`.
 
 ## Notes
 
-The `*.tabl.asddl` files use source-based ABAP Dictionary table syntax for ADT.
-Some older abapGit/ABAP releases serialize transparent tables only as
-`*.tabl.xml`; if your import ignores `*.tabl.asddl`, create the tables in ADT
-from these sources, activate them, then let abapGit serialize the final table XML.
+The `ZSD_*` database tables are delivered as DDLS sources with `define table`.
+If these objects are not active, every `ZI_SD_*` view that selects from `ZSD_*`
+will fail with "data source does not exist or is not active".
 
 After publishing the service binding, point `webapp/manifest.json` from the CAP
 URL to the ABAP OData V4 URL, for example:
