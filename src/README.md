@@ -34,6 +34,18 @@ The `ZSD_*` database tables are delivered as classic abapGit `TABL` XML objects.
 If these objects are not active, every `ZI_SD_*` view that selects from `ZSD_*`
 will fail with "data source does not exist or is not active".
 
+If ADT only shows activation errors for `ZI_SD_*` and `ZC_SD_*`, first check
+that the `TABL` objects `ZSD_SO`, `ZSD_SO_ITEM`, `ZSD_SO_STEP`, `ZSD_ALERT`,
+`ZSD_KPI`, `ZSD_TOPCUST`, `ZSD_TOPMAT`, `ZSD_REVMON`, `ZSD_REVCUST`,
+`ZSD_REVSORG`, and `ZSD_OPTREND` exist in the target package and are active.
+Do not copy only the `*.asddls` files into ADT; import the repository with
+abapGit so that the `*.tabl.xml` table objects are created too.
+
+Errors for `ZC_CUSTOMER`, `ZI_TRAVEL`, `ZI_BOOKING`, or
+`ZI_BOOKING_SUPPLEMENT` are not part of this SD cockpit backend. They belong to
+other RAP sample objects in the same system or activation request and should be
+fixed or removed from the request separately.
+
 After publishing the service binding, point `webapp/manifest.json` from the CAP
 URL to the ABAP OData V4 URL, for example:
 

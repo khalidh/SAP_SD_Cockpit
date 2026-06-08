@@ -84,6 +84,63 @@ Ordre conseille dans ADT apres import abapGit :
 Si les tables `ZSD_*` ne sont pas actives, les vues `ZI_SD_*` echoueront avec
 `The data source 'ZSD_*' does not exist or is not active`.
 
+## Diagnostic des erreurs d'activation courantes
+
+Si le protocole d'activation contient des messages comme :
+
+```text
+The data source 'ZSD_ALERT' does not exist or is not active
+The data source 'ZSD_SO' does not exist or is not active
+The data source 'ZI_SD_SALES_ORDER' does not exist or is not active
+```
+
+la cause racine est presque toujours que les tables transparentes `ZSD_*` n'ont
+pas ete creees ou activees avant les vues CDS. Les erreurs sur `ZI_SD_*`, puis
+sur `ZC_SD_*`, sont ensuite des erreurs en cascade.
+
+Checklist dans ADT :
+
+1. Dans le package `ZSAP_SD_COCKPIT_FR`, verifier que les objets `TABL`
+   suivants existent : `ZSD_SO`, `ZSD_SO_ITEM`, `ZSD_SO_STEP`, `ZSD_ALERT`,
+   `ZSD_KPI`, `ZSD_TOPCUST`, `ZSD_TOPMAT`, `ZSD_REVMON`, `ZSD_REVCUST`,
+   `ZSD_REVSORG`, `ZSD_OPTREND`.
+2. Si ces tables n'existent pas, refaire l'import via abapGit. Ne pas copier
+   seulement les fichiers `*.asddls` dans ADT, car les tables sont livrees ici
+   comme objets abapGit `TABL` serialises en `*.tabl.xml`.
+3. Activer uniquement les tables `ZSD_*`.
+4. Activer ensuite les vues interface `ZI_SD_*`.
+5. Activer les vues projection `ZC_SD_*`.
+6. Activer les behaviors `*.bdef`, les classes `ZBP_*`, puis le service
+   `ZSD_SALES_COCKPIT`.
+
+Les messages sur `ZC_CUSTOMER`, `ZI_TRAVEL`, `ZI_BOOKING` ou
+`ZI_BOOKING_SUPPLEMENT` ne viennent pas de ce projet. Ils correspondent a des
+objets RAP differents deja presents dans le systeme ou dans la meme reserve de
+travail. Pour eviter de masquer le vrai probleme, les retirer de la reserve ou
+les activer/corriger separement.
+
+Corrections typiques pour ces objets externes :
+
+- `ROOT keyword missing ... since 'ZI_CUSTOMER' has the root property` :
+  la projection `ZC_CUSTOMER` doit aussi etre declaree avec
+  `define root view entity`.
+- `The child entity 'ZI_BOOKING' of a composition cannot be ROOT` :
+  une entite enfant de composition ne doit pas etre declaree `root`.
+- `The column ... is unknown` ou `The association ... is unknown` :
+  la projection selectionne des champs ou associations qui n'existent pas dans
+  l'interface CDS source active.
+
+Erreurs corrigees dans les sources ABAP du projet :
+
+- `COMMENT est un mot reserve` : le champ CDS expose est `CommentText`, mappe
+  vers la colonne table `comment_text`.
+- `MONTH est un mot reserve` : le champ CDS expose est `MonthText`, mappe vers
+  la colonne table `month_text`.
+- `Provider contract not modifiable if view contains 'REDIRECTED TO PARENT'
+  associations` : les projections enfants `ZC_SD_SALES_ORDER_ITEM` et
+  `ZC_SD_PROCESS_STEP` ne declarent pas de `provider contract
+  transactional_query`; seul le root projection `ZC_SD_SALES_ORDER` le porte.
+
 ## Points d'attention
 
 - Le backend CAP (`srv/`, `db/`, `server.js`) ne s'execute pas dans ADT ni dans le serveur ABAP. Il sert au mode local et au prototype OData.

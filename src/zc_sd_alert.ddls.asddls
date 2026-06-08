@@ -18,7 +18,7 @@ define root view entity ZC_SD_ALERT
       DueDate,
       Owner,
       Assignee,
-      Comment,
+      CommentText,
       ResolvedAt,
       Amount,
       Currency,

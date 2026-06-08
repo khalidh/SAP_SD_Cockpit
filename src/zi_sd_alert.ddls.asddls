@@ -16,7 +16,7 @@ define root view entity ZI_SD_ALERT
       due_date      as DueDate,
       owner         as Owner,
       assignee      as Assignee,
-      comment_text  as Comment,
+      comment_text  as CommentText,
       resolved_at   as ResolvedAt,
       @Semantics.amount.currencyCode: 'Currency'
       amount        as Amount,

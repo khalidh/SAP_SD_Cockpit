@@ -26,7 +26,7 @@ authorization master ( none )
     DueDate       = due_date;
     Owner         = owner;
     Assignee      = assignee;
-    Comment       = comment_text;
+    CommentText   = comment_text;
     ResolvedAt    = resolved_at;
     Amount        = amount;
     Currency      = currency;
