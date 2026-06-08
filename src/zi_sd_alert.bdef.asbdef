@@ -1,0 +1,42 @@
+managed implementation in class ZBP_I_SD_ALERT unique;
+strict ( 2 );
+
+define behavior for ZI_SD_ALERT alias Alert
+persistent table zsd_alert
+etag master LastChangedAt
+lock master
+authorization master ( none )
+{
+  field ( readonly, numbering : managed ) AlertUUID;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+  field ( mandatory ) AlertID, AlertType, Severity, ProcessStatus, Title;
+
+  mapping for zsd_alert
+  {
+    AlertUUID     = alert_uuid;
+    AlertID       = alert_id;
+    AlertType     = alert_type;
+    TypeText      = type_text;
+    Severity      = severity;
+    StatusText    = status_text;
+    ProcessStatus = process_status;
+    Title         = title;
+    Reference     = reference;
+    CustomerName  = customer_name;
+    DueDate       = due_date;
+    Owner         = owner;
+    Assignee      = assignee;
+    Comment       = comment_text;
+    ResolvedAt    = resolved_at;
+    Amount        = amount;
+    Currency      = currency;
+    CreatedBy     = created_by;
+    CreatedAt     = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+
+  create;
+  update;
+  delete;
+}

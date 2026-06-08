@@ -1,0 +1,14 @@
+@EndUserText.label: 'SD Sales Cockpit Service'
+define service ZSD_SALES_COCKPIT {
+  expose ZC_SD_SALES_ORDER as SalesOrders;
+  expose ZC_SD_SALES_ORDER_ITEM as SalesOrderItems;
+  expose ZC_SD_PROCESS_STEP as ProcessSteps;
+  expose ZC_SD_ALERT as SdAlerts;
+  expose ZC_SD_KPI_SNAPSHOT as KpiSnapshots;
+  expose ZC_SD_TOP_CUSTOMER as TopCustomers;
+  expose ZC_SD_TOP_MATERIAL as TopMaterials;
+  expose ZC_SD_REVENUE_BY_MONTH as RevenueByMonth;
+  expose ZC_SD_REVENUE_BY_CUSTOMER as RevenueByCustomer;
+  expose ZC_SD_REVENUE_BY_SALESORG as RevenueBySalesOrg;
+  expose ZC_SD_OPERATIONAL_TREND as OperationalTrend;
+}

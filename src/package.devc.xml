@@ -4,6 +4,8 @@
   <asx:values>
    <DEVC>
     <CTEXT>SAP SD Cockpit FR</CTEXT>
+    <LANGUAGE>F</LANGUAGE>
+    <MASTERLANG>F</MASTERLANG>
    </DEVC>
   </asx:values>
  </asx:abap>

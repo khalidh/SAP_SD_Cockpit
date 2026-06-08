@@ -1,0 +1,105 @@
+managed implementation in class ZBP_I_SD_SALES_ORDER unique;
+strict ( 2 );
+
+define behavior for ZI_SD_SALES_ORDER alias SalesOrder
+persistent table zsd_so
+etag master LastChangedAt
+lock master
+authorization master ( none )
+{
+  field ( readonly, numbering : managed ) OrderUUID;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+  field ( mandatory ) OrderID, CustomerID, CustomerName, OrderDate, Currency, StatusCode;
+
+  mapping for zsd_so
+  {
+    OrderUUID           = order_uuid;
+    OrderID             = order_id;
+    SalesDocumentType   = sales_doc_type;
+    CustomerID          = customer_id;
+    CustomerName        = customer_name;
+    OrderDate           = order_date;
+    Amount              = amount;
+    Currency            = currency;
+    SalesOrg            = sales_org;
+    DistributionChannel = distr_channel;
+    Division            = division;
+    StatusCode          = status_code;
+    StatusText          = status_text;
+    Incoterms           = incoterms;
+    PaymentTerms        = payment_terms;
+    CreatedBy           = created_by;
+    CreatedAt           = created_at;
+    LastChangedBy       = last_changed_by;
+    LastChangedAt       = last_changed_at;
+  }
+
+  create;
+  update;
+  delete;
+
+  association _Items { create; }
+  association _ProcessSteps { create; }
+}
+
+define behavior for ZI_SD_SALES_ORDER_ITEM alias SalesOrderItem
+persistent table zsd_so_item
+etag dependent by _SalesOrder
+lock dependent by _SalesOrder
+authorization dependent by _SalesOrder
+{
+  field ( readonly, numbering : managed ) ItemUUID;
+  field ( readonly ) ParentUUID, LastChangedAt;
+  field ( mandatory ) ItemNo, Material, Quantity, Unit, Currency;
+
+  mapping for zsd_so_item
+  {
+    ItemUUID           = item_uuid;
+    ParentUUID         = parent_uuid;
+    ItemNo             = item_no;
+    Material           = material;
+    Description        = description;
+    Quantity           = quantity;
+    Unit               = unit;
+    NetPrice           = net_price;
+    Currency           = currency;
+    Discount           = discount;
+    DeliveryStatusCode = deliv_status_code;
+    DeliveryStatusText = deliv_status_text;
+    BillingStatusCode  = bill_status_code;
+    BillingStatusText  = bill_status_text;
+    LastChangedAt      = last_changed_at;
+  }
+
+  update;
+  delete;
+
+  association _SalesOrder;
+}
+
+define behavior for ZI_SD_PROCESS_STEP alias ProcessStep
+persistent table zsd_so_step
+lock dependent by _SalesOrder
+authorization dependent by _SalesOrder
+{
+  field ( readonly, numbering : managed ) StepUUID;
+  field ( readonly ) ParentUUID;
+  field ( mandatory ) Title, Sequence;
+
+  mapping for zsd_so_step
+  {
+    StepUUID    = step_uuid;
+    ParentUUID  = parent_uuid;
+    StepAt      = step_at;
+    Title       = title;
+    Description = description;
+    Owner       = owner;
+    Icon        = icon;
+    Sequence    = sequence;
+  }
+
+  update;
+  delete;
+
+  association _SalesOrder;
+}

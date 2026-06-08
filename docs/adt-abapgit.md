@@ -58,6 +58,33 @@ Le resultat est cree dans `dist/`. Ce dossier est deployable comme application B
 9. Pousser ces objets serialises dans GitHub.
 10. Les prochains imports via abapGit ADT pourront alors recreer les objets ABAP/BSP dans le package `ZSAP_SD_COCKPIT_FR`.
 
+## Backend RAP fourni dans `src/`
+
+Le depot contient maintenant une base backend RAP dans `src/` pour remplacer le
+service CAP local par un service OData V4 ABAP.
+
+Objets principaux :
+
+- tables `ZSD_*` pour les commandes, postes, etapes, alertes, KPI et datasets analytiques ;
+- vues CDS interface `ZI_SD_*` ;
+- vues CDS projection `ZC_SD_*` ;
+- behaviors transactionnels pour `ZI_SD_SALES_ORDER` et `ZI_SD_ALERT` ;
+- service definition `ZSD_SALES_COCKPIT` ;
+- service binding OData V4 `ZSD_SALES_COCKPIT_O4`.
+
+Ordre conseille dans ADT apres import abapGit :
+
+1. Activer les tables.
+2. Activer les vues `ZI_*`.
+3. Activer les vues `ZC_*`.
+4. Activer les behaviors et classes `ZBP_*`.
+5. Activer `ZSD_SALES_COCKPIT`.
+6. Publier le binding `ZSD_SALES_COCKPIT_O4`.
+
+Selon la version ABAP/abapGit, les fichiers source-based table
+`*.tabl.asddl` peuvent devoir etre recrees manuellement dans ADT puis
+reserialises par abapGit en `*.tabl.xml`.
+
 ## Points d'attention
 
 - Le backend CAP (`srv/`, `db/`, `server.js`) ne s'execute pas dans ADT ni dans le serveur ABAP. Il sert au mode local et au prototype OData.
