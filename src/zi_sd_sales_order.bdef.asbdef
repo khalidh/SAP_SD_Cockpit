@@ -7,7 +7,7 @@ etag master LastChangedAt
 lock master
 authorization master ( none )
 {
-  field ( readonly, numbering : managed ) OrderUUID;
+  field ( readonly ) OrderUUID;
   field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
   field ( mandatory ) OrderID, CustomerID, CustomerName, OrderDate, Currency, StatusCode;
 
@@ -48,7 +48,7 @@ etag dependent by _SalesOrder
 lock dependent by _SalesOrder
 authorization dependent by _SalesOrder
 {
-  field ( readonly, numbering : managed ) ItemUUID;
+  field ( readonly ) ItemUUID;
   field ( readonly ) ParentUUID, LastChangedAt;
   field ( mandatory ) ItemNo, Material, Quantity, Unit, Currency;
 
@@ -82,7 +82,7 @@ persistent table zsd_so_step
 lock dependent by _SalesOrder
 authorization dependent by _SalesOrder
 {
-  field ( readonly, numbering : managed ) StepUUID;
+  field ( readonly ) StepUUID;
   field ( readonly ) ParentUUID;
   field ( mandatory ) Title, Sequence;
 
