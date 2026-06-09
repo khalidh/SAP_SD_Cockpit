@@ -7,7 +7,7 @@ etag master LastChangedAt
 lock master
 authorization master ( none )
 {
-  field ( readonly ) AlertUUID;
+  field ( numbering : managed, readonly ) AlertUUID;
   field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
   field ( mandatory ) AlertID, AlertType, Severity, ProcessStatus, Title;
 
