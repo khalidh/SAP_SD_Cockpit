@@ -8,7 +8,6 @@ define behavior for ZC_SD_SALES_ORDER alias SalesOrder
   use delete;
 
   use association _Items { create; }
-  use association _ProcessSteps { create; }
 }
 
 define behavior for ZC_SD_SALES_ORDER_ITEM alias SalesOrderItem
@@ -18,12 +17,3 @@ define behavior for ZC_SD_SALES_ORDER_ITEM alias SalesOrderItem
 
   use association _SalesOrder;
 }
-
-define behavior for ZC_SD_PROCESS_STEP alias ProcessStep
-{
-  use update;
-  use delete;
-
-  use association _SalesOrder;
-}
-
