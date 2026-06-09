@@ -13,5 +13,6 @@ define view entity ZI_SD_PROCESS_STEP
       owner       as Owner,
       icon        as Icon,
       sequence    as Sequence,
+
       _SalesOrder
 }
