@@ -113,23 +113,6 @@ Checklist dans ADT :
 6. Activer les behaviors `*.bdef`, les classes `ZBP_*`, puis le service
    `ZSD_SALES_COCKPIT`.
 
-Les messages sur `ZC_CUSTOMER`, `ZI_TRAVEL`, `ZI_BOOKING` ou
-`ZI_BOOKING_SUPPLEMENT` ne viennent pas de ce projet. Ils correspondent a des
-objets RAP differents deja presents dans le systeme ou dans la meme reserve de
-travail. Pour eviter de masquer le vrai probleme, les retirer de la reserve ou
-les activer/corriger separement.
-
-Corrections typiques pour ces objets externes :
-
-- `ROOT keyword missing ... since 'ZI_CUSTOMER' has the root property` :
-  la projection `ZC_CUSTOMER` doit aussi etre declaree avec
-  `define root view entity`.
-- `The child entity 'ZI_BOOKING' of a composition cannot be ROOT` :
-  une entite enfant de composition ne doit pas etre declaree `root`.
-- `The column ... is unknown` ou `The association ... is unknown` :
-  la projection selectionne des champs ou associations qui n'existent pas dans
-  l'interface CDS source active.
-
 Erreurs corrigees dans les sources ABAP du projet :
 
 - `COMMENT est un mot reserve` : le champ CDS expose est `CommentText`, mappe
