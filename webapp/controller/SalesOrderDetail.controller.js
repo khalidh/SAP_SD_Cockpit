@@ -21,7 +21,7 @@ sap.ui.define([
       var oListBinding = this.getView().getModel().bindList("/SalesOrders", null, null, [
         new Filter("orderId", FilterOperator.EQ, sOrderId)
       ], {
-        $expand: "items,processSteps"
+        $expand: "items"
       });
 
       oListBinding.requestContexts(0, 1).then(function (aContexts) {
