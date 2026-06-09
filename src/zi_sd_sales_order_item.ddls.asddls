@@ -22,6 +22,6 @@ define view entity ZI_SD_SALES_ORDER_ITEM
       bill_status_code  as BillingStatusCode,
       bill_status_text  as BillingStatusText,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      last_changed_at as LastChangedAt,
+      last_changed_at as ItemLastChangedAt,
       _SalesOrder
 }

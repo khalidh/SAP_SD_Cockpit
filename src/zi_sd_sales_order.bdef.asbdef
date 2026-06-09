@@ -49,7 +49,7 @@ lock dependent by _SalesOrder
 authorization dependent by _SalesOrder
 {
   field ( readonly ) ItemUUID;
-  field ( readonly ) ParentUUID, LastChangedAt;
+  field ( readonly ) ParentUUID, ItemLastChangedAt;
   field ( mandatory ) ItemNo, Material, Quantity, Unit, Currency;
 
   mapping for zsd_so_item
@@ -68,7 +68,7 @@ authorization dependent by _SalesOrder
     DeliveryStatusText = deliv_status_text;
     BillingStatusCode  = bill_status_code;
     BillingStatusText  = bill_status_text;
-    LastChangedAt      = last_changed_at;
+    ItemLastChangedAt  = last_changed_at;
   }
 
   update;
