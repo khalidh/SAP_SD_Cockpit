@@ -12,5 +12,6 @@ define view entity ZC_SD_PROCESS_STEP
       Owner,
       Icon,
       Sequence,
+
       _SalesOrder : redirected to parent ZC_SD_SALES_ORDER
 }
