@@ -38,7 +38,6 @@ authorization master ( none )
   delete;
 
   association _Items { create; }
-  association _ProcessSteps { create; }
 }
 
 define behavior for ZI_SD_SALES_ORDER_ITEM alias SalesOrderItem
@@ -68,33 +67,6 @@ authorization dependent by _SalesOrder
     BillingStatusCode  = bill_status_code;
     BillingStatusText  = bill_status_text;
     LastChangedAt      = last_changed_at;
-  }
-
-  update;
-  delete;
-
-  association _SalesOrder;
-}
-
-define behavior for ZI_SD_PROCESS_STEP alias ProcessStep
-persistent table zsd_so_step
-lock dependent by _SalesOrder
-authorization dependent by _SalesOrder
-{
-  field ( numbering : managed, readonly ) StepUUID;
-  field ( readonly ) ParentUUID;
-  field ( mandatory ) Title, Sequence;
-
-  mapping for zsd_so_step
-  {
-    StepUUID    = step_uuid;
-    ParentUUID  = parent_uuid;
-    StepAt      = step_at;
-    Title       = title;
-    Description = description;
-    Owner       = owner;
-    Icon        = icon;
-    Sequence    = sequence;
   }
 
   update;
