@@ -79,6 +79,7 @@ authorization dependent by _SalesOrder
 
 define behavior for ZI_SD_PROCESS_STEP alias ProcessStep
 persistent table zsd_so_step
+etag dependent by _SalesOrder
 lock dependent by _SalesOrder
 authorization dependent by _SalesOrder
 {
