@@ -50,6 +50,7 @@ authorization dependent by _SalesOrder
 {
   field ( numbering : managed, readonly ) ItemUUID;
   field ( readonly ) ParentUUID;
+
   field ( mandatory ) ItemNo, Material, Quantity, Unit, Currency;
 
   mapping for zsd_so_item
