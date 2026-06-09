@@ -18,5 +18,6 @@ define view entity ZC_SD_SALES_ORDER_ITEM
       DeliveryStatusText,
       BillingStatusCode,
       BillingStatusText,
+
       _SalesOrder : redirected to parent ZC_SD_SALES_ORDER
 }
