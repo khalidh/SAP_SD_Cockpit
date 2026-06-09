@@ -26,3 +26,4 @@ define behavior for ZC_SD_PROCESS_STEP alias ProcessStep
 
   use association _SalesOrder;
 }
+
