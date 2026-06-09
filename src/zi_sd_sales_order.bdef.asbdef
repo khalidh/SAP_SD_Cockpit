@@ -3,7 +3,6 @@ strict ( 2 );
 
 define behavior for ZI_SD_SALES_ORDER alias SalesOrder
 persistent table zsd_so
-etag master LastChangedAt
 lock master
 authorization master ( none )
 {
@@ -44,12 +43,11 @@ authorization master ( none )
 
 define behavior for ZI_SD_SALES_ORDER_ITEM alias SalesOrderItem
 persistent table zsd_so_item
-etag dependent by _SalesOrder
 lock dependent by _SalesOrder
 authorization dependent by _SalesOrder
 {
   field ( numbering : managed, readonly ) ItemUUID;
-  field ( readonly ) ParentUUID;
+  field ( readonly ) ParentUUID, LastChangedAt;
 
   field ( mandatory ) ItemNo, Material, Quantity, Unit, Currency;
 
@@ -69,6 +67,7 @@ authorization dependent by _SalesOrder
     DeliveryStatusText = deliv_status_text;
     BillingStatusCode  = bill_status_code;
     BillingStatusText  = bill_status_text;
+    LastChangedAt      = last_changed_at;
   }
 
   update;
@@ -79,7 +78,6 @@ authorization dependent by _SalesOrder
 
 define behavior for ZI_SD_PROCESS_STEP alias ProcessStep
 persistent table zsd_so_step
-etag dependent by _SalesOrder
 lock dependent by _SalesOrder
 authorization dependent by _SalesOrder
 {
