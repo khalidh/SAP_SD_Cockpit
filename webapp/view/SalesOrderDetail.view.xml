@@ -2,7 +2,6 @@
   controllerName="sd.sales.cockpit.controller.SalesOrderDetail"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m"
-  xmlns:core="sap.ui.core"
   xmlns:uxap="sap.uxap">
   <Page title="Détail commande" showNavButton="true" navButtonPress=".onNavBack" class="sdPage">
     <content>
@@ -75,25 +74,6 @@
                     </ColumnListItem>
                   </items>
                 </Table>
-              </uxap:ObjectPageSubSection>
-            </uxap:subSections>
-          </uxap:ObjectPageSection>
-
-          <uxap:ObjectPageSection title="Timeline SD">
-            <uxap:subSections>
-              <uxap:ObjectPageSubSection>
-                <List items="{path:'processSteps', parameters: {$orderby: 'sequence asc'}}">
-                  <CustomListItem>
-                    <HBox class="sapUiSmallMargin" alignItems="Center">
-                      <core:Icon src="{icon}" size="1.5rem" class="sapUiSmallMarginEnd"/>
-                      <VBox>
-                        <ObjectIdentifier title="{title}" text="{stepDate}"/>
-                        <Text text="{description}"/>
-                        <ObjectStatus text="{owner}" state="Information"/>
-                      </VBox>
-                    </HBox>
-                  </CustomListItem>
-                </List>
               </uxap:ObjectPageSubSection>
             </uxap:subSections>
           </uxap:ObjectPageSection>
