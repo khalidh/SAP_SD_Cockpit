@@ -3,6 +3,7 @@ strict ( 2 );
 
 define behavior for ZI_SD_SALES_ORDER alias SalesOrder
 persistent table zsd_so
+etag master LastChangedAt
 lock master
 authorization master ( none )
 {
