@@ -17,6 +17,7 @@ sap.ui.define([
       this.setModel(new ODataModel({
         serviceUrl: "http://localhost:4004/odata/v4/sd/",
         synchronizationMode: "None",
+        groupId: "$direct",
         operationMode: "Server",
         updateGroupId: "alerts",
         autoExpandSelect: true

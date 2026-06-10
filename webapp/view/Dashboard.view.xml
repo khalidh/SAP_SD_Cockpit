@@ -54,7 +54,7 @@
         <IconTabBar expandable="false" class="sapUiMediumMarginTop">
           <items>
             <IconTabFilter key="customers" text="Top clients" icon="sap-icon://customer">
-              <Table items="{path:'/TopCustomers', parameters: {$orderby: 'revenue desc'}}">
+              <Table items="{dashboardLists>/topCustomers}">
                 <columns>
                   <Column><Text text="Client"/></Column>
                   <Column hAlign="End"><Text text="CA"/></Column>
@@ -64,17 +64,17 @@
                 <items>
                   <ColumnListItem>
                     <cells>
-                      <ObjectIdentifier title="{name}" text="{customerId}"/>
-                      <ObjectNumber number="{revenue}" unit="EUR" state="Success"/>
-                      <Text text="{orders}"/>
-                      <ObjectStatus text="{trend}" state="{path:'trendStatus', formatter:'.formatter.statusState'}"/>
+                      <ObjectIdentifier title="{dashboardLists>name}" text="{dashboardLists>customerId}"/>
+                      <ObjectNumber number="{dashboardLists>revenue}" unit="EUR" state="Success"/>
+                      <Text text="{dashboardLists>orders}"/>
+                      <ObjectStatus text="{dashboardLists>trend}" state="{path:'dashboardLists>trendStatus', formatter:'.formatter.statusState'}"/>
                     </cells>
                   </ColumnListItem>
                 </items>
               </Table>
             </IconTabFilter>
             <IconTabFilter key="materials" text="Top articles" icon="sap-icon://product">
-              <Table items="{path:'/TopMaterials', parameters: {$orderby: 'revenue desc'}}">
+              <Table items="{dashboardLists>/topMaterials}">
                 <columns>
                   <Column><Text text="Article"/></Column>
                   <Column><Text text="Libellé"/></Column>
@@ -84,10 +84,10 @@
                 <items>
                   <ColumnListItem>
                     <cells>
-                      <ObjectIdentifier title="{material}" text="{category}"/>
-                      <Text text="{description}"/>
-                      <Text text="{quantity}"/>
-                      <ObjectNumber number="{revenue}" unit="EUR" state="Success"/>
+                      <ObjectIdentifier title="{dashboardLists>material}" text="{dashboardLists>category}"/>
+                      <Text text="{dashboardLists>description}"/>
+                      <Text text="{dashboardLists>quantity}"/>
+                      <ObjectNumber number="{dashboardLists>revenue}" unit="EUR" state="Success"/>
                     </cells>
                   </ColumnListItem>
                 </items>
