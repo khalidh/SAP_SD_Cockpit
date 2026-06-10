@@ -1,7 +1,6 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'SD Revenue by Month Projection'
 define root view entity ZC_SD_REVENUE_BY_MONTH
-  provider contract transactional_query
   as projection on ZI_SD_REVENUE_BY_MONTH
 {
   key RevenueByMonthUUID, MonthText, Revenue, Currency, SortNo

@@ -2,7 +2,6 @@
 @EndUserText.label: 'SD Sales Order Projection'
 @Metadata.allowExtensions: true
 define root view entity ZC_SD_SALES_ORDER
-  provider contract transactional_query
   as projection on ZI_SD_SALES_ORDER
 {
   key OrderUUID,

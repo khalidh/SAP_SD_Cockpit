@@ -1,9 +1,0 @@
-CLASS zbp_i_sd_alert DEFINITION
-  PUBLIC
-  ABSTRACT
-  FINAL
-  FOR BEHAVIOR OF zi_sd_alert.
-ENDCLASS.
-
-CLASS zbp_i_sd_alert IMPLEMENTATION.
-ENDCLASS.

@@ -2,7 +2,6 @@
 @EndUserText.label: 'SD Alert Projection'
 @Metadata.allowExtensions: true
 define root view entity ZC_SD_ALERT
-  provider contract transactional_query
   as projection on ZI_SD_ALERT
 {
   key AlertUUID,

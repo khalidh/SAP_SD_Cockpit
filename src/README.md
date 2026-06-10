@@ -11,9 +11,7 @@ already points abapGit to `/src/`.
 - Transparent tables: `ZSD_SO`, `ZSD_SO_ITEM`, `ZSD_SO_STEP`, `ZSD_ALERT`,
   `ZSD_KPI`, `ZSD_TOPCUST`, `ZSD_TOPMAT`, `ZSD_REVMON`, `ZSD_REVCUST`,
   `ZSD_REVSORG`, `ZSD_OPTREND`
-- Transactional RAP BO: `ZI_SD_SALES_ORDER` with items and process steps
-- Transactional RAP BO: `ZI_SD_ALERT`
-- Read-only CDS views: KPI and analytical datasets
+- Read-only CDS views for sales orders, alerts, KPI and analytical datasets
 - Service definition: `ZSD_SALES_COCKPIT`
 - OData V4 service binding metadata: `ZSD_SALES_COCKPIT_O4`
 
@@ -22,11 +20,8 @@ already points abapGit to `/src/`.
 1. Activate the `ZSD_*` transparent tables first.
 2. Activate interface CDS views `ZI_*`.
 3. Activate projection CDS views `ZC_*`.
-4. Activate behavior definitions `ZI_SD_SALES_ORDER`, `ZC_SD_SALES_ORDER`,
-   `ZI_SD_ALERT`, `ZC_SD_ALERT`.
-5. Activate behavior pool classes `ZBP_I_SD_SALES_ORDER` and `ZBP_I_SD_ALERT`.
-6. Activate service definition `ZSD_SALES_COCKPIT`.
-7. Publish service binding `ZSD_SALES_COCKPIT_O4`.
+4. Activate service definition `ZSD_SALES_COCKPIT`.
+5. Activate and publish service binding `ZSD_SALES_COCKPIT_O4`.
 
 ## Notes
 

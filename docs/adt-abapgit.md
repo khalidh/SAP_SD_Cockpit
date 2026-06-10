@@ -68,7 +68,6 @@ Objets principaux :
 - tables `ZSD_*` pour les commandes, postes, etapes, alertes, KPI et datasets analytiques ;
 - vues CDS interface `ZI_SD_*` ;
 - vues CDS projection `ZC_SD_*` ;
-- behaviors transactionnels pour `ZI_SD_SALES_ORDER` et `ZI_SD_ALERT` ;
 - service definition `ZSD_SALES_COCKPIT` ;
 - service binding OData V4 `ZSD_SALES_COCKPIT_O4`.
 
@@ -77,9 +76,8 @@ Ordre conseille dans ADT apres import abapGit :
 1. Activer d'abord les tables transparentes `ZSD_*`.
 2. Activer les vues `ZI_*`.
 3. Activer les vues `ZC_*`.
-4. Activer les behaviors et classes `ZBP_*`.
-5. Activer `ZSD_SALES_COCKPIT`.
-6. Publier le binding `ZSD_SALES_COCKPIT_O4`.
+4. Activer `ZSD_SALES_COCKPIT`.
+5. Activer puis publier le binding `ZSD_SALES_COCKPIT_O4`.
 
 Si les tables `ZSD_*` ne sont pas actives, les vues `ZI_SD_*` echoueront avec
 `The data source 'ZSD_*' does not exist or is not active`.
@@ -110,8 +108,8 @@ Checklist dans ADT :
 3. Activer uniquement les tables `ZSD_*`.
 4. Activer ensuite les vues interface `ZI_SD_*`.
 5. Activer les vues projection `ZC_SD_*`.
-6. Activer les behaviors `*.bdef`, les classes `ZBP_*`, puis le service
-   `ZSD_SALES_COCKPIT`.
+6. Activer le service `ZSD_SALES_COCKPIT`, puis le binding
+   `ZSD_SALES_COCKPIT_O4`.
 
 Erreurs corrigees dans les sources ABAP du projet :
 
@@ -119,10 +117,9 @@ Erreurs corrigees dans les sources ABAP du projet :
   vers la colonne table `comment_text`.
 - `MONTH est un mot reserve` : le champ CDS expose est `MonthText`, mappe vers
   la colonne table `month_text`.
-- `Provider contract not modifiable if view contains 'REDIRECTED TO PARENT'
-  associations` : les projections enfants `ZC_SD_SALES_ORDER_ITEM` et
-  `ZC_SD_PROCESS_STEP` ne declarent pas de `provider contract
-  transactional_query`; seul le root projection `ZC_SD_SALES_ORDER` le porte.
+- Les objets `*.bdef` et `ZBP_*` ne sont plus necessaires : le service ABAP
+  fourni ici est volontairement read-only pour simplifier la publication OData
+  du cockpit.
 
 ## Points d'attention
 
