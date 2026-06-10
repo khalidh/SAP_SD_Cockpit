@@ -7,10 +7,10 @@ Ce projet est une application SAPUI5 freestyle avec un backend CAP local. Il peu
 Le package ABAP cible a utiliser dans Eclipse ADT / abapGit est :
 
 ```text
-ZSAP_SD_COCKPIT_FR
+ZSAP_SD_COCKPIT_FR2
 ```
 
-Important : abapGit ne stocke pas le nom du package racine dans le depot Git. Le package racine est defini dans ADT au moment de creer le depot abapGit online. Il faut donc saisir exactement `ZSAP_SD_COCKPIT_FR` dans le champ package lors du clone/import.
+Important : abapGit ne stocke pas le nom du package racine dans le depot Git. Le package racine est defini dans ADT au moment de creer le depot abapGit online. Il faut donc saisir exactement `ZSAP_SD_COCKPIT_FR2` dans le champ package lors du clone/import.
 
 Le depot contient aussi `src/package.devc.xml`, qui fournit les metadonnees de description du package racine lorsqu'abapGit cree ou synchronise le package.
 
@@ -49,14 +49,14 @@ Le resultat est cree dans `dist/`. Ce dossier est deployable comme application B
 
 1. Installer ou activer abapGit pour ADT dans Eclipse.
 2. Creer un nouveau depot online abapGit depuis l'URL GitHub du projet.
-3. Dans le champ package, saisir exactement `ZSAP_SD_COCKPIT_FR`.
+3. Dans le champ package, saisir exactement `ZSAP_SD_COCKPIT_FR2`.
 4. Si le package n'existe pas, laisser abapGit le creer ou le creer au prealable dans ADT/SE80 selon les regles de transport de ton systeme.
 5. Cloner le depot GitHub dans ce package.
 6. Si le depot ne contient que les sources UI5/CAP, abapGit ne creera pas l'application BSP finale tout seul.
 7. Deployer d'abord le contenu `dist/` en BSP dans le systeme ABAP.
-8. Depuis le systeme ABAP, serialiser ensuite l'application BSP avec abapGit dans `ZSAP_SD_COCKPIT_FR`. Cette operation produira les objets ABAP/BSP attendus dans `src/`, notamment l'objet de type BSP application.
+8. Depuis le systeme ABAP, serialiser ensuite l'application BSP avec abapGit dans `ZSAP_SD_COCKPIT_FR2`. Cette operation produira les objets ABAP/BSP attendus dans `src/`, notamment l'objet de type BSP application.
 9. Pousser ces objets serialises dans GitHub.
-10. Les prochains imports via abapGit ADT pourront alors recreer les objets ABAP/BSP dans le package `ZSAP_SD_COCKPIT_FR`.
+10. Les prochains imports via abapGit ADT pourront alors recreer les objets ABAP/BSP dans le package `ZSAP_SD_COCKPIT_FR2`.
 
 ## Backend RAP fourni dans `src/`
 
@@ -100,7 +100,7 @@ sur `ZC_SD_*`, sont ensuite des erreurs en cascade.
 
 Checklist dans ADT :
 
-1. Dans le package `ZSAP_SD_COCKPIT_FR`, verifier que les objets `TABL`
+1. Dans le package `ZSAP_SD_COCKPIT_FR2`, verifier que les objets `TABL`
    suivants existent : `ZSD_SO`, `ZSD_SO_ITEM`, `ZSD_SO_STEP`, `ZSD_ALERT`,
    `ZSD_KPI`, `ZSD_TOPCUST`, `ZSD_TOPMAT`, `ZSD_REVMON`, `ZSD_REVCUST`,
    `ZSD_REVSORG`, `ZSD_OPTREND`.
@@ -145,4 +145,4 @@ Pour preparer les fichiers UI5 a deployer sur ABAP :
 npm run build
 ```
 
-Pour importer avec abapGit ADT, creer le depot online dans le package `ZSAP_SD_COCKPIT_FR`. Les objets ABAP serialises dans `src/` doivent etre generes depuis un systeme ABAP apres creation/deploiement du BSP.
+Pour importer avec abapGit ADT, creer le depot online dans le package `ZSAP_SD_COCKPIT_FR2`. Les objets ABAP serialises dans `src/` doivent etre generes depuis un systeme ABAP apres creation/deploiement du BSP.
