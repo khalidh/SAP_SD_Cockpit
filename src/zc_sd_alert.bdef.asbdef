@@ -2,6 +2,7 @@ projection;
 strict ( 2 );
 
 define behavior for ZC_SD_ALERT alias Alert
+use etag
 {
   use create;
   use update;
