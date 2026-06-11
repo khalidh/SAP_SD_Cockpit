@@ -27,7 +27,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_sales_orders = VALUE #(
       (
-        order_uuid = x'22222222222222222222222222222281'
+        order_uuid = X'22222222222222222222222222222281'
         order_id = '5000012481'
         sales_doc_type = 'OR - Commande standard'
         customer_id = '10000045'
@@ -48,7 +48,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        order_uuid = x'22222222222222222222222222222507'
+        order_uuid = X'22222222222222222222222222222507'
         order_id = '5000012507'
         sales_doc_type = 'OR - Commande standard'
         customer_id = '10000201'
@@ -69,7 +69,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        order_uuid = x'22222222222222222222222222222553'
+        order_uuid = X'22222222222222222222222222222553'
         order_id = '5000012553'
         sales_doc_type = 'OR - Commande standard'
         customer_id = '10000072'
@@ -90,7 +90,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        order_uuid = x'22222222222222222222222222222609'
+        order_uuid = X'22222222222222222222222222222609'
         order_id = '5000012609'
         sales_doc_type = 'OR - Commande standard'
         customer_id = '10000118'
@@ -114,8 +114,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_sales_order_items = VALUE #(
       (
-        item_uuid = x'33333333333333333333333333333310'
-        parent_uuid = x'22222222222222222222222222222281'
+        item_uuid = X'33333333333333333333333333333310'
+        parent_uuid = X'22222222222222222222222222222281'
         item_no = '10'
         material = 'MAT-100024'
         description = 'Kit installation premium'
@@ -131,8 +131,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        item_uuid = x'33333333333333333333333333333320'
-        parent_uuid = x'22222222222222222222222222222281'
+        item_uuid = X'33333333333333333333333333333320'
+        parent_uuid = X'22222222222222222222222222222281'
         item_no = '20'
         material = 'MAT-200481'
         description = 'Module connecté X4'
@@ -148,8 +148,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        item_uuid = x'33333333333333333333333333333330'
-        parent_uuid = x'22222222222222222222222222222507'
+        item_uuid = X'33333333333333333333333333333330'
+        parent_uuid = X'22222222222222222222222222222507'
         item_no = '10'
         material = 'MAT-500045'
         description = 'Armoire technique standard'
@@ -165,8 +165,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        item_uuid = x'33333333333333333333333333333340'
-        parent_uuid = x'22222222222222222222222222222553'
+        item_uuid = X'33333333333333333333333333333340'
+        parent_uuid = X'22222222222222222222222222222553'
         item_no = '10'
         material = 'MAT-300118'
         description = 'Pack maintenance annuel'
@@ -182,8 +182,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        item_uuid = x'33333333333333333333333333333350'
-        parent_uuid = x'22222222222222222222222222222609'
+        item_uuid = X'33333333333333333333333333333350'
+        parent_uuid = X'22222222222222222222222222222609'
         item_no = '10'
         material = 'MAT-200481'
         description = 'Module connecté X4'
@@ -202,8 +202,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_process_steps = VALUE #(
       (
-        step_uuid = x'AAAAAAAA111111111111111111111001'
-        parent_uuid = x'22222222222222222222222222222281'
+        step_uuid = X'AAAAAAAA111111111111111111111001'
+        parent_uuid = X'22222222222222222222222222222281'
         step_at = '20260502091200.0000000'
         title = 'Commande créée'
         description = 'VA01 - Commande standard enregistrée'
@@ -212,8 +212,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 10
       )
       (
-        step_uuid = x'AAAAAAAA111111111111111111111002'
-        parent_uuid = x'22222222222222222222222222222281'
+        step_uuid = X'AAAAAAAA111111111111111111111002'
+        parent_uuid = X'22222222222222222222222222222281'
         step_at = '20260504154000.0000000'
         title = 'Livraison partielle'
         description = 'VL01N - Livraison 8000048120'
@@ -222,8 +222,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 20
       )
       (
-        step_uuid = x'AAAAAAAA111111111111111111111003'
-        parent_uuid = x'22222222222222222222222222222281'
+        step_uuid = X'AAAAAAAA111111111111111111111003'
+        parent_uuid = X'22222222222222222222222222222281'
         step_at = '20260505110500.0000000'
         title = 'Sortie marchandise'
         description = 'Post Goods Issue partiel'
@@ -232,8 +232,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 30
       )
       (
-        step_uuid = x'AAAAAAAA222222222222222222222001'
-        parent_uuid = x'22222222222222222222222222222507'
+        step_uuid = X'AAAAAAAA222222222222222222222001'
+        parent_uuid = X'22222222222222222222222222222507'
         step_at = '20260507102100.0000000'
         title = 'Commande créée'
         description = 'Contrôle crédit déclenché automatiquement'
@@ -242,8 +242,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 10
       )
       (
-        step_uuid = x'AAAAAAAA222222222222222222222002'
-        parent_uuid = x'22222222222222222222222222222507'
+        step_uuid = X'AAAAAAAA222222222222222222222002'
+        parent_uuid = X'22222222222222222222222222222507'
         step_at = '20260507102200.0000000'
         title = 'Blocage crédit'
         description = 'Horizon de crédit dépassé'
@@ -252,8 +252,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 20
       )
       (
-        step_uuid = x'AAAAAAAA333333333333333333333001'
-        parent_uuid = x'22222222222222222222222222222553'
+        step_uuid = X'AAAAAAAA333333333333333333333001'
+        parent_uuid = X'22222222222222222222222222222553'
         step_at = '20260511083600.0000000'
         title = 'Commande créée'
         description = 'VA01 - Commande service'
@@ -262,8 +262,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 10
       )
       (
-        step_uuid = x'AAAAAAAA333333333333333333333002'
-        parent_uuid = x'22222222222222222222222222222553'
+        step_uuid = X'AAAAAAAA333333333333333333333002'
+        parent_uuid = X'22222222222222222222222222222553'
         step_at = '20260512141000.0000000'
         title = 'Facture créée'
         description = 'VF01 - Facture 9000084127'
@@ -272,8 +272,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 20
       )
       (
-        step_uuid = x'AAAAAAAA333333333333333333333003'
-        parent_uuid = x'22222222222222222222222222222553'
+        step_uuid = X'AAAAAAAA333333333333333333333003'
+        parent_uuid = X'22222222222222222222222222222553'
         step_at = '20260518090000.0000000'
         title = 'Paiement reçu'
         description = 'Rapprochement bancaire effectué'
@@ -282,8 +282,8 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         sequence = 30
       )
       (
-        step_uuid = x'AAAAAAAA444444444444444444444001'
-        parent_uuid = x'22222222222222222222222222222609'
+        step_uuid = X'AAAAAAAA444444444444444444444001'
+        parent_uuid = X'22222222222222222222222222222609'
         step_at = '20260516164400.0000000'
         title = 'Commande créée'
         description = 'Disponibilité ATP confirmée partiellement'
@@ -295,7 +295,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_alerts = VALUE #(
       (
-        alert_uuid = x'44444444444444444444444444444001'
+        alert_uuid = X'44444444444444444444444444444001'
         alert_id = 'A-1001'
         alert_type = 'CREDIT_BLOCK'
         type_text = 'Blocage crédit'
@@ -318,7 +318,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        alert_uuid = x'44444444444444444444444444444002'
+        alert_uuid = X'44444444444444444444444444444002'
         alert_id = 'A-1002'
         alert_type = 'DELIVERY_DELAY'
         type_text = 'Livraison en retard'
@@ -341,7 +341,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        alert_uuid = x'44444444444444444444444444444003'
+        alert_uuid = X'44444444444444444444444444444003'
         alert_id = 'A-1003'
         alert_type = 'STOCK_SHORTAGE'
         type_text = 'Rupture de stock'
@@ -364,7 +364,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        alert_uuid = x'44444444444444444444444444444004'
+        alert_uuid = X'44444444444444444444444444444004'
         alert_id = 'A-1004'
         alert_type = 'BILLING_PENDING'
         type_text = 'Facture non générée'
@@ -387,7 +387,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         last_changed_at = c_changed_at
       )
       (
-        alert_uuid = x'44444444444444444444444444444005'
+        alert_uuid = X'44444444444444444444444444444005'
         alert_id = 'A-1005'
         alert_type = 'CREDIT_EXCEEDED'
         type_text = 'Dépassement crédit'
@@ -413,7 +413,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_kpis = VALUE #(
       (
-        snapshot_uuid = x'11111111111111111111111111111111'
+        snapshot_uuid = X'11111111111111111111111111111111'
         snapshot_date = '20260523'
         monthly_revenue = '842.00'
         monthly_revenue_scale = 'K'
@@ -428,7 +428,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_top_customers = VALUE #(
       (
-        topcust_uuid = x'99999999111111111111111111111001'
+        topcust_uuid = X'99999999111111111111111111111001'
         customer_id = '10000045'
         customer_name = 'Groupe Nova Retail'
         revenue = '184500.00'
@@ -438,7 +438,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         trend_status = 'OK'
       )
       (
-        topcust_uuid = x'99999999111111111111111111111002'
+        topcust_uuid = X'99999999111111111111111111111002'
         customer_id = '10000072'
         customer_name = 'Atelier Martin Pro'
         revenue = '142800.00'
@@ -448,7 +448,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         trend_status = 'OPEN'
       )
       (
-        topcust_uuid = x'99999999111111111111111111111003'
+        topcust_uuid = X'99999999111111111111111111111003'
         customer_id = '10000118'
         customer_name = 'Medialux Distribution'
         revenue = '98600.00'
@@ -458,7 +458,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         trend_status = 'PARTIAL'
       )
       (
-        topcust_uuid = x'99999999111111111111111111111004'
+        topcust_uuid = X'99999999111111111111111111111004'
         customer_id = '10000201'
         customer_name = 'Senso Habitat'
         revenue = '76300.00'
@@ -471,7 +471,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_top_materials = VALUE #(
       (
-        topmat_uuid = x'99999999222222222222222222222001'
+        topmat_uuid = X'99999999222222222222222222222001'
         material = 'MAT-100024'
         description = 'Kit installation premium'
         category = 'Accessoires'
@@ -480,7 +480,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         currency = 'EUR'
       )
       (
-        topmat_uuid = x'99999999222222222222222222222002'
+        topmat_uuid = X'99999999222222222222222222222002'
         material = 'MAT-200481'
         description = 'Module connecté X4'
         category = 'Électronique'
@@ -489,7 +489,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         currency = 'EUR'
       )
       (
-        topmat_uuid = x'99999999222222222222222222222003'
+        topmat_uuid = X'99999999222222222222222222222003'
         material = 'MAT-300118'
         description = 'Pack maintenance annuel'
         category = 'Service'
@@ -498,7 +498,7 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
         currency = 'EUR'
       )
       (
-        topmat_uuid = x'99999999222222222222222222222004'
+        topmat_uuid = X'99999999222222222222222222222004'
         material = 'MAT-500045'
         description = 'Armoire technique standard'
         category = 'Équipement'
@@ -510,35 +510,35 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_revenue_month = VALUE #(
       (
-        revmon_uuid = x'55555555555555555555555555555001'
+        revmon_uuid = X'55555555555555555555555555555001'
         month_text = 'Jan'
         revenue = '610000.00'
         currency = 'EUR'
         sort_no = 1
       )
       (
-        revmon_uuid = x'55555555555555555555555555555002'
+        revmon_uuid = X'55555555555555555555555555555002'
         month_text = 'Fév'
         revenue = '690000.00'
         currency = 'EUR'
         sort_no = 2
       )
       (
-        revmon_uuid = x'55555555555555555555555555555003'
+        revmon_uuid = X'55555555555555555555555555555003'
         month_text = 'Mar'
         revenue = '735000.00'
         currency = 'EUR'
         sort_no = 3
       )
       (
-        revmon_uuid = x'55555555555555555555555555555004'
+        revmon_uuid = X'55555555555555555555555555555004'
         month_text = 'Avr'
         revenue = '804000.00'
         currency = 'EUR'
         sort_no = 4
       )
       (
-        revmon_uuid = x'55555555555555555555555555555005'
+        revmon_uuid = X'55555555555555555555555555555005'
         month_text = 'Mai'
         revenue = '842000.00'
         currency = 'EUR'
@@ -548,25 +548,25 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_revenue_customer = VALUE #(
       (
-        revcust_uuid = x'66666666666666666666666666666001'
+        revcust_uuid = X'66666666666666666666666666666001'
         customer_name = 'Nova Retail'
         revenue = '184500.00'
         currency = 'EUR'
       )
       (
-        revcust_uuid = x'66666666666666666666666666666002'
+        revcust_uuid = X'66666666666666666666666666666002'
         customer_name = 'Atelier Martin'
         revenue = '142800.00'
         currency = 'EUR'
       )
       (
-        revcust_uuid = x'66666666666666666666666666666003'
+        revcust_uuid = X'66666666666666666666666666666003'
         customer_name = 'Medialux'
         revenue = '98600.00'
         currency = 'EUR'
       )
       (
-        revcust_uuid = x'66666666666666666666666666666004'
+        revcust_uuid = X'66666666666666666666666666666004'
         customer_name = 'Senso Habitat'
         revenue = '76300.00'
         currency = 'EUR'
@@ -575,19 +575,19 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_revenue_sales_org = VALUE #(
       (
-        revsorg_uuid = x'77777777777777777777777777777001'
+        revsorg_uuid = X'77777777777777777777777777777001'
         sales_org = 'FR01'
         revenue = '482000.00'
         currency = 'EUR'
       )
       (
-        revsorg_uuid = x'77777777777777777777777777777002'
+        revsorg_uuid = X'77777777777777777777777777777002'
         sales_org = 'FR02'
         revenue = '214000.00'
         currency = 'EUR'
       )
       (
-        revsorg_uuid = x'77777777777777777777777777777003'
+        revsorg_uuid = X'77777777777777777777777777777003'
         sales_org = 'DE01'
         revenue = '146000.00'
         currency = 'EUR'
@@ -596,25 +596,25 @@ CLASS zcl_sd_demo_data_load IMPLEMENTATION.
 
     lt_operational_trend = VALUE #(
       (
-        optrend_uuid = x'88888888888888888888888888888001'
+        optrend_uuid = X'88888888888888888888888888888001'
         week_text = 'S18'
         delays = 8
         open_orders = 96
       )
       (
-        optrend_uuid = x'88888888888888888888888888888002'
+        optrend_uuid = X'88888888888888888888888888888002'
         week_text = 'S19'
         delays = 11
         open_orders = 108
       )
       (
-        optrend_uuid = x'88888888888888888888888888888003'
+        optrend_uuid = X'88888888888888888888888888888003'
         week_text = 'S20'
         delays = 17
         open_orders = 128
       )
       (
-        optrend_uuid = x'88888888888888888888888888888004'
+        optrend_uuid = X'88888888888888888888888888888004'
         week_text = 'S21'
         delays = 13
         open_orders = 117
