@@ -78,6 +78,8 @@ Ordre conseille dans ADT apres import abapGit :
 3. Activer les vues `ZC_*`.
 4. Activer `ZSD_SALES_COCKPIT`.
 5. Activer puis publier le binding `ZSD_SALES_COCKPIT_O4`.
+6. Activer puis executer la classe `ZCL_SD_DEMO_DATA_LOAD` pour remplir les
+   tables avec les donnees de demonstration.
 
 Si les tables `ZSD_*` ne sont pas actives, les vues `ZI_SD_*` echoueront avec
 `The data source 'ZSD_*' does not exist or is not active`.
@@ -120,6 +122,32 @@ Erreurs corrigees dans les sources ABAP du projet :
 - Les objets `*.bdef` et `ZBP_*` ne sont plus necessaires : le service ABAP
   fourni ici est volontairement read-only pour simplifier la publication OData
   du cockpit.
+
+## Chargement des donnees de test dans ADT
+
+Les donnees de test CAP sont stockees dans `db/data/*.csv`. Pour les recuperer
+dans Eclipse ADT, le depot fournit une classe ABAP executable :
+
+```text
+ZCL_SD_DEMO_DATA_LOAD
+```
+
+Cette classe implemente `IF_OO_ADT_CLASSRUN`. Elle peut donc etre lancee depuis
+ADT avec **Run As > ABAP Application**.
+
+Procedure :
+
+1. Importer le depot avec abapGit dans le package `ZSAP_SD_COCKPIT_FR2`.
+2. Activer les tables `ZSD_*`.
+3. Activer la classe `ZCL_SD_DEMO_DATA_LOAD`.
+4. Executer la classe dans ADT.
+5. Verifier les donnees dans les tables `ZSD_SO`, `ZSD_SO_ITEM`,
+   `ZSD_SO_STEP`, `ZSD_ALERT`, `ZSD_KPI`, `ZSD_TOPCUST`, `ZSD_TOPMAT`,
+   `ZSD_REVMON`, `ZSD_REVCUST`, `ZSD_REVSORG` et `ZSD_OPTREND`.
+
+La classe est idempotente pour un environnement demo : elle supprime d'abord le
+contenu des tables `ZSD_*`, puis reinsere le jeu de donnees complet. Ne pas
+l'utiliser telle quelle sur un systeme contenant des donnees metier reelles.
 
 ## Points d'attention
 
