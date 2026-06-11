@@ -1,6 +1,8 @@
 @EndUserText.label: 'SD Sales Cockpit Service'
 define service ZSD_SALES_COCKPIT {
   expose ZC_SD_SALES_ORDER as SalesOrders;
+  expose ZC_SD_SALES_ORDER_ITEM as SalesOrderItems;
+  expose ZC_SD_PROCESS_STEP as ProcessSteps;
 
   expose ZC_SD_ALERT as SdAlerts;
   expose ZC_SD_KPI_SNAPSHOT as KpiSnapshots;

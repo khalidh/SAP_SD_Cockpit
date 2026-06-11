@@ -81,6 +81,9 @@ Ordre conseille dans ADT apres import abapGit :
 6. Activer puis executer la classe `ZCL_SD_DEMO_DATA_LOAD` pour remplir les
    tables avec les donnees de demonstration.
 
+Le service definition expose aussi les entites enfants `SalesOrderItems` et
+`ProcessSteps`, necessaires pour les navigations/compositions de `SalesOrders`.
+
 Si les tables `ZSD_*` ne sont pas actives, les vues `ZI_SD_*` echoueront avec
 `The data source 'ZSD_*' does not exist or is not active`.
 
