@@ -24,9 +24,14 @@ already points abapGit to `/src/`.
 3. Activate projection CDS views `ZC_*`.
 4. Activate service definition `ZSD_SALES_COCKPIT`.
 5. Activate and publish service binding `ZSD_SALES_COCKPIT_O4`.
+6. Assign the UI5 Launchpad App Descriptor Item `ZSD_COCKPIT_UI5R` to a
+   business catalog and business role.
 
 The cockpit-oriented Fiori Elements mapping is documented in
 `docs/rap-fiori-elements-screen.md`.
+
+The freestyle UI5 Launchpad assignment is documented in
+`docs/launchpad-abap-trial.md`.
 
 ## Notes
 
@@ -45,3 +50,8 @@ After publishing the service binding, point `webapp/manifest.json` from the CAP
 URL to the ABAP OData V4 URL, for example:
 
 `/sap/opu/odata4/sap/zsd_sales_cockpit/srvd/sap/zsd_sales_cockpit/0001/`
+
+For the deployed freestyle UI5 app, ABAP creates or updates the Launchpad App
+Descriptor Item `ZSD_COCKPIT_UI5R` from the manifest inbound
+`ZSD_COCKPIT-display`. Add it to a business catalog such as `ZBC_SD_COCKPIT`,
+then assign that catalog to a business role such as `Z_BR_SD_COCKPIT`.

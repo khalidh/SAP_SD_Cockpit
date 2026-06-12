@@ -27,12 +27,22 @@ sap.ui.define([], function () {
     return normalizeServiceUrl(window.localStorage.getItem(STORAGE_KEY));
   }
 
+  function useMockModel() {
+    var sQueryUrl = readQueryServiceUrl();
+    var sStoredUrl = window.localStorage.getItem(STORAGE_KEY);
+    var sHost = window.location.hostname;
+    var bLocalHost = sHost === "localhost" || sHost === "127.0.0.1";
+
+    return !sQueryUrl && !sStoredUrl && !bLocalHost;
+  }
+
   function buildUrl(sResourcePath) {
     return getServiceUrl() + sResourcePath.replace(/^\//, "");
   }
 
   return {
     getServiceUrl: getServiceUrl,
+    useMockModel: useMockModel,
     buildUrl: buildUrl
   };
 });

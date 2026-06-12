@@ -75,9 +75,12 @@ Dans `SalesOrderDetail.controller.js`, le paramètre `{orderId}` est lu dans `_o
 
 ## Modèles de données
 
-Le modèle par défaut est un `sap.ui.model.odata.v4.ODataModel` configuré dans `webapp/manifest.json`.
+En local, le composant crée un `sap.ui.model.odata.v4.ODataModel` vers le
+service CAP. Dans le Launchpad ABAP, si aucune URL de service n'est fournie,
+l'application bascule sur les données mock embarquées afin que la tuile puisse
+s'ouvrir sans backend CAP local.
 
-Service local attendu :
+Service CAP local attendu :
 
 ```text
 http://localhost:4004/odata/v4/sd/
@@ -94,6 +97,13 @@ Principales entités OData :
 - `/callSapSandboxApi(...)` : action OData V4 qui appelle une API SAP Sandbox autorisée via le backend CAP.
 
 Les modèles nommés `device`, `ui` et `dashboard` restent des `JSONModel` locaux pour l'état d'interface, les filtres et l'affichage synthétique des KPI.
+
+Pour forcer un service OData depuis une URL déployée, ouvrir l'application avec
+le paramètre `serviceUrl`, par exemple :
+
+```text
+...?serviceUrl=/sap/opu/odata4/sap/zsd_sales_cockpit/srvd/sap/zsd_sales_cockpit/0001/
+```
 
 Le fichier `formatter.js` centralise la conversion des codes métier vers les états UI5 :
 
@@ -243,3 +253,26 @@ python3 -m http.server 8080
 ```
 
 Puis ouvrir `http://localhost:8080/index.html`.
+
+## Déploiement ABAP
+
+Pour générer les artefacts UI5 :
+
+```bash
+npm run build
+```
+
+Pour déployer l'application vers le repository ABAP avec `ui5-deploy.yaml` :
+
+```bash
+npm run deploy
+```
+
+La cible est configurée pour l'environnement ABAP BTP Trial. Avant de lancer le
+déploiement, vérifier que le package `ZSAP_SD_COCKPIT_FR2` existe dans ABAP et
+que l'utilisateur dispose des autorisations de déploiement UI5.
+
+Le manifeste déclare l'inbound Fiori `ZSD_COCKPIT-display`. Après déploiement,
+ABAP crée/met à jour le Launchpad App Descriptor Item `ZSD_COCKPIT_UI5R`. Pour
+le rendre ouvrable dans le Launchpad, l'ajouter à un business catalog puis
+assigner ce catalog à un business role. Voir `docs/launchpad-abap-trial.md`.

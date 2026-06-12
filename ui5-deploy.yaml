@@ -5,16 +5,15 @@ type: application
 builder:
   customTasks:
     - name: deploy-to-abap
-      afterTask: generateCachebusterInfo
+      afterTask: replaceVersion
       configuration:
         target:
-          url: https://YOUR-ABAP-SYSTEM.example.com
-          client: "100"
-        credentials:
-          username: env:ABAP_USERNAME
-          password: env:ABAP_PASSWORD
+          url: https://bb8534dd-13b7-4042-bba9-41728e5288ac.abap.us10.hana.ondemand.com
+          scp: true
         app:
           name: ZSD_COCKPIT
           description: SD Sales Cockpit
           package: ZSAP_SD_COCKPIT_FR2
-          transport: $TMP
+          transport: ""
+        exclude:
+          - /test/

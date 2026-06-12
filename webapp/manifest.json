@@ -15,6 +15,21 @@
     "applicationVersion": {
       "version": "1.0.0"
     },
+    "crossNavigation": {
+      "inbounds": {
+        "ZSD_COCKPIT-display": {
+          "semanticObject": "ZSD_COCKPIT",
+          "action": "display",
+          "title": "SD Sales Cockpit",
+          "subTitle": "Cockpit SAP SD",
+          "icon": "sap-icon://sales-order",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    },
     "dataSources": {
       "sdService": {
         "uri": "http://localhost:4004/odata/v4/sd/",
@@ -59,17 +74,6 @@
       "cozy": true
     },
     "models": {
-      "": {
-        "type": "sap.ui.model.odata.v4.ODataModel",
-        "dataSource": "sdService",
-        "settings": {
-          "synchronizationMode": "None",
-          "groupId": "$direct",
-          "operationMode": "Server",
-          "updateGroupId": "alerts",
-          "autoExpandSelect": true
-        }
-      },
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {

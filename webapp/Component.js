@@ -15,14 +15,18 @@ sap.ui.define([
     init: function () {
       UIComponent.prototype.init.apply(this, arguments);
 
-      this.setModel(new ODataModel({
-        serviceUrl: serviceConfig.getServiceUrl(),
-        synchronizationMode: "None",
-        groupId: "$direct",
-        operationMode: "Server",
-        updateGroupId: "alerts",
-        autoExpandSelect: true
-      }));
+      if (serviceConfig.useMockModel()) {
+        this._setMockModel();
+      } else {
+        this.setModel(new ODataModel({
+          serviceUrl: serviceConfig.getServiceUrl(),
+          synchronizationMode: "None",
+          groupId: "$direct",
+          operationMode: "Server",
+          updateGroupId: "alerts",
+          autoExpandSelect: true
+        }));
+      }
 
       this.setModel(new JSONModel({
         isPhone: Device.system.phone,
@@ -88,6 +92,52 @@ sap.ui.define([
       }), "sandbox");
 
       this.getRouter().initialize();
+    },
+
+    _setMockModel: function () {
+      var oModel = new JSONModel(this._toAppData({}));
+
+      this.setModel(oModel);
+
+      fetch(sap.ui.require.toUrl("sd/sales/cockpit/model/mockData.json"))
+        .then(function (oResponse) {
+          if (!oResponse.ok) {
+            throw new Error("Mock data unavailable");
+          }
+          return oResponse.json();
+        })
+        .then(function (oData) {
+          oModel.setData(this._toAppData(oData));
+        }.bind(this))
+        .catch(function () {
+          oModel.setData(this._toAppData({}));
+        }.bind(this));
+    },
+
+    _toAppData: function (oData) {
+      var oKpis = oData.kpis || {};
+      var oAnalytics = oData.analytics || {};
+
+      return {
+        KpiSnapshots: [{
+          monthlyRevenue: oKpis.monthlyRevenue && oKpis.monthlyRevenue.value || 0,
+          monthlyRevenueScale: "K",
+          currency: oKpis.monthlyRevenue && oKpis.monthlyRevenue.currency || "EUR",
+          openOrders: oKpis.openOrders || 0,
+          delayedDeliveries: oKpis.delayedDeliveries || 0,
+          pendingInvoices: oKpis.pendingInvoices || 0,
+          creditBlockedOrders: oKpis.creditBlockedOrders || 0,
+          serviceLevel: oKpis.serviceLevel || 0
+        }],
+        TopCustomers: oData.topCustomers || [],
+        TopMaterials: oData.topMaterials || [],
+        SalesOrders: oData.salesOrders || [],
+        SdAlerts: oData.alerts || [],
+        RevenueByMonth: oAnalytics.revenueByMonth || [],
+        RevenueByCustomer: oAnalytics.revenueByCustomer || [],
+        RevenueBySalesOrg: oAnalytics.revenueBySalesOrg || [],
+        OperationalTrend: oAnalytics.operationalTrend || []
+      };
     }
   });
 });

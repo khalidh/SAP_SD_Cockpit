@@ -24,13 +24,21 @@ sap.ui.define([
         $expand: "items"
       });
 
-      oListBinding.requestContexts(0, 1).then(function (aContexts) {
+      this._requestContexts(oListBinding).then(function (aContexts) {
         if (!aContexts.length) {
           this.getOwnerComponent().getRouter().navTo("salesOrders");
           return;
         }
         this.getView().setBindingContext(aContexts[0]);
       }.bind(this));
+    },
+
+    _requestContexts: function (oListBinding) {
+      if (oListBinding.requestContexts) {
+        return oListBinding.requestContexts(0, 1);
+      }
+
+      return Promise.resolve(oListBinding.getContexts(0, 1));
     },
 
     onNavBack: function () {
