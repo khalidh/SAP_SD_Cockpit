@@ -2,6 +2,7 @@
   "name": "sd-sales-cockpit",
   "version": "1.0.0",
   "private": true,
+  "sapux": true,
   "description": "SAPUI5 freestyle SD Sales Cockpit with JSON mock data",
   "scripts": {
     "cap": "cds watch",

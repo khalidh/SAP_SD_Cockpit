@@ -209,6 +209,15 @@ rouvrir l'application avec :
 ...?serviceUrl=http://localhost:4004/odata/v4/sd/
 ```
 
+Si SAP Fiori tools affiche `No application found` pour les commandes de
+deploiement, verifier que le projet est ouvert a la racine contenant
+`package.json`, `ui5.yaml` et `webapp/manifest.json`. Le projet contient aussi
+`"sapux": true` dans `package.json` afin d'etre reconnu par Fiori tools.
+
+Un modele `ui5-deploy.yaml` est fourni pour le deploiement ABAP. Remplacer
+`https://YOUR-ABAP-SYSTEM.example.com` par l'URL du systeme ABAP, ajuster le
+client si necessaire, puis relancer la commande Fiori tools de deploiement.
+
 ## Resume pratique
 
 Pour developper :
