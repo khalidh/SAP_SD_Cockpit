@@ -82,7 +82,7 @@ define root view entity ZC_SD_ALERT
       ResolvedAt,
 
       @EndUserText.label: 'Montant'
-      @UI.dataPoint: { title: 'Montant', criticality: #CRITICAL }
+      @UI.dataPoint: { title: 'Montant' }
       @UI.lineItem: [{ position: 100, type: #AS_DATAPOINT, label: 'Montant' }]
       @UI.identification: [{ position: 120, type: #AS_DATAPOINT, label: 'Montant' }]
       Amount,

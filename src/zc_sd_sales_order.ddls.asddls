@@ -50,7 +50,7 @@ define root view entity ZC_SD_SALES_ORDER
       OrderDate,
 
       @EndUserText.label: 'Montant'
-      @UI.dataPoint: { title: 'Montant', criticality: #POSITIVE }
+      @UI.dataPoint: { title: 'Montant' }
       @UI.lineItem: [{ position: 50, type: #AS_DATAPOINT, label: 'Montant' }]
       @UI.identification: [{ position: 60, type: #AS_DATAPOINT, label: 'Montant' }]
       Amount,

@@ -25,7 +25,7 @@ define root view entity ZC_SD_TOP_CUSTOMER
       Name,
 
       @EndUserText.label: 'CA'
-      @UI.dataPoint: { title: 'CA', criticality: #POSITIVE }
+      @UI.dataPoint: { title: 'CA' }
       @UI.lineItem: [{ position: 30, type: #AS_DATAPOINT, label: 'CA' }]
       @UI.identification: [{ position: 30, type: #AS_DATAPOINT, label: 'CA' }]
       Revenue,

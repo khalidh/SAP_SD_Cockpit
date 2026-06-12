@@ -17,13 +17,13 @@ define root view entity ZC_SD_OPERATIONAL_TREND
       Week,
 
       @EndUserText.label: 'Retards'
-      @UI.dataPoint: { title: 'Retards', criticality: #NEGATIVE }
+      @UI.dataPoint: { title: 'Retards' }
       @UI.lineItem: [{ position: 20, type: #AS_DATAPOINT, label: 'Retards' }]
       @UI.identification: [{ position: 20, type: #AS_DATAPOINT, label: 'Retards' }]
       Delays,
 
       @EndUserText.label: 'Commandes ouvertes'
-      @UI.dataPoint: { title: 'Commandes ouvertes', criticality: #CRITICAL }
+      @UI.dataPoint: { title: 'Commandes ouvertes' }
       @UI.lineItem: [{ position: 30, type: #AS_DATAPOINT, label: 'Commandes ouvertes' }]
       @UI.identification: [{ position: 30, type: #AS_DATAPOINT, label: 'Commandes ouvertes' }]
       OpenOrders
