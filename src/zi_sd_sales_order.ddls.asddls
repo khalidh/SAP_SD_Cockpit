@@ -3,6 +3,7 @@
 define root view entity ZI_SD_SALES_ORDER
   as select from zsd_so as SalesOrder
   composition [0..*] of ZI_SD_SALES_ORDER_ITEM as _Items
+  composition [0..*] of ZI_SD_PROCESS_STEP as _ProcessSteps
 {
   key order_uuid      as OrderUUID,
       order_id        as OrderID,
@@ -28,5 +29,6 @@ define root view entity ZI_SD_SALES_ORDER
       last_changed_by as LastChangedBy,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
       last_changed_at as LastChangedAt,
-      _Items
+      _Items,
+      _ProcessSteps
 }

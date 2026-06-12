@@ -84,6 +84,11 @@ Ordre conseille dans ADT apres import abapGit :
 Le service definition expose aussi les entites enfants `SalesOrderItems` et
 `ProcessSteps`, necessaires pour les navigations/compositions de `SalesOrders`.
 
+Les projections `ZC_*` contiennent aussi des annotations UI pour generer une
+preview Fiori Elements depuis le service binding RAP. Voir
+`docs/rap-fiori-elements-screen.md` pour le mapping entre l'ecran cockpit et les
+entites RAP annotees.
+
 Si les tables `ZSD_*` ne sont pas actives, les vues `ZI_SD_*` echoueront avec
 `The data source 'ZSD_*' does not exist or is not active`.
 

@@ -14,6 +14,8 @@ already points abapGit to `/src/`.
 - Read-only CDS views for sales orders, alerts, KPI and analytical datasets
 - Service definition: `ZSD_SALES_COCKPIT`
 - OData V4 service binding metadata: `ZSD_SALES_COCKPIT_O4`
+- UI annotations on the `ZC_*` projections for Fiori Elements previews and
+  generated RAP applications.
 
 ## Activation order
 
@@ -22,6 +24,9 @@ already points abapGit to `/src/`.
 3. Activate projection CDS views `ZC_*`.
 4. Activate service definition `ZSD_SALES_COCKPIT`.
 5. Activate and publish service binding `ZSD_SALES_COCKPIT_O4`.
+
+The cockpit-oriented Fiori Elements mapping is documented in
+`docs/rap-fiori-elements-screen.md`.
 
 ## Notes
 
