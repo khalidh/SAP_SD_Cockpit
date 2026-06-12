@@ -8,11 +8,6 @@
   title: { value: 'OrderID' },
   description: { value: 'CustomerName' }
 }
-@UI.facet: [
-  { id: 'General', type: #IDENTIFICATION_REFERENCE, label: 'Commande', position: 10 },
-  { id: 'Items', type: #LINEITEM_REFERENCE, label: 'Postes', position: 20, targetElement: '_Items' },
-  { id: 'ProcessSteps', type: #LINEITEM_REFERENCE, label: 'Etapes', position: 30, targetElement: '_ProcessSteps' }
-]
 define root view entity ZC_SD_SALES_ORDER
   provider contract transactional_query
   as projection on ZI_SD_SALES_ORDER
@@ -50,9 +45,8 @@ define root view entity ZC_SD_SALES_ORDER
       OrderDate,
 
       @EndUserText.label: 'Montant'
-      @UI.dataPoint: { title: 'Montant' }
-      @UI.lineItem: [{ position: 50, type: #AS_DATAPOINT, label: 'Montant' }]
-      @UI.identification: [{ position: 60, type: #AS_DATAPOINT, label: 'Montant' }]
+      @UI.lineItem: [{ position: 50, label: 'Montant' }]
+      @UI.identification: [{ position: 60, label: 'Montant' }]
       Amount,
 
       Currency,
