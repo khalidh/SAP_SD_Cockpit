@@ -163,8 +163,51 @@ l'utiliser telle quelle sur un systeme contenant des donnees metier reelles.
 
 - Le backend CAP (`srv/`, `db/`, `server.js`) ne s'execute pas dans ADT ni dans le serveur ABAP. Il sert au mode local et au prototype OData.
 - Pour une execution 100% ABAP, il faut remplacer le service CAP par un service OData ABAP, par exemple RAP, SEGW, ou un service existant S/4HANA.
-- L'URL OData actuelle est `http://localhost:4004/odata/v4/sd/`. Avant de deployer en ABAP, adapter `webapp/manifest.json` et `webapp/Component.js` vers l'URL OData ABAP cible.
+- L'URL OData peut etre fournie au lancement avec le parametre `serviceUrl`
+  afin de basculer entre CAP local et ABAP RAP sans modifier le code.
 - Le fichier `.env` ne doit pas etre pousse dans GitHub.
+
+## Ouvrir la vue cockpit a tuiles sur le service RAP
+
+La preview ADT du binding RAP affiche une application Fiori Elements standard
+par entite. Pour obtenir la vue cockpit avec les tuiles KPI, utiliser
+l'application SAPUI5 freestyle du dossier `webapp/`.
+
+En local avec le backend CAP :
+
+```bash
+npm run cap
+```
+
+Puis ouvrir :
+
+```text
+http://localhost:4004/index.html
+```
+
+Sur ABAP/RAP, deployer le build UI5 comme application BSP/UI5 Repository :
+
+```bash
+npm run build
+```
+
+Le dossier genere `dist/` est celui a importer dans le systeme ABAP avec SAP
+Fiori tools, `/UI5/UI5_REPOSITORY_LOAD`, ou le service
+`/UI5/ABAP_REPOSITORY_SRV`.
+
+Au lancement de l'application ABAP, passer l'URL du service RAP avec le
+parametre `serviceUrl` :
+
+```text
+...?serviceUrl=/sap/opu/odata4/sap/zsd_sales_cockpit/srvd/sap/zsd_sales_cockpit/0001/
+```
+
+L'application memorise cette URL dans le navigateur. Pour revenir au CAP local,
+rouvrir l'application avec :
+
+```text
+...?serviceUrl=http://localhost:4004/odata/v4/sd/
+```
 
 ## Resume pratique
 

@@ -2,8 +2,9 @@ sap.ui.define([
   "sap/ui/core/UIComponent",
   "sap/ui/Device",
   "sap/ui/model/json/JSONModel",
-  "sap/ui/model/odata/v4/ODataModel"
-], function (UIComponent, Device, JSONModel, ODataModel) {
+  "sap/ui/model/odata/v4/ODataModel",
+  "sd/sales/cockpit/model/serviceConfig"
+], function (UIComponent, Device, JSONModel, ODataModel, serviceConfig) {
   "use strict";
 
   return UIComponent.extend("sd.sales.cockpit.Component", {
@@ -15,7 +16,7 @@ sap.ui.define([
       UIComponent.prototype.init.apply(this, arguments);
 
       this.setModel(new ODataModel({
-        serviceUrl: "http://localhost:4004/odata/v4/sd/",
+        serviceUrl: serviceConfig.getServiceUrl(),
         synchronizationMode: "None",
         groupId: "$direct",
         operationMode: "Server",

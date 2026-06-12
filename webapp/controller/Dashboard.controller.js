@@ -1,11 +1,10 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/json/JSONModel",
-  "sd/sales/cockpit/model/formatter"
-], function (Controller, JSONModel, formatter) {
+  "sd/sales/cockpit/model/formatter",
+  "sd/sales/cockpit/model/serviceConfig"
+], function (Controller, JSONModel, formatter, serviceConfig) {
   "use strict";
-
-  var SERVICE_URL = "http://localhost:4004/odata/v4/sd/";
 
   return Controller.extend("sd.sales.cockpit.controller.Dashboard", {
     formatter: formatter,
@@ -22,20 +21,20 @@ sap.ui.define([
     _loadDashboardKpis: function () {
       var oDashboardModel = this.getOwnerComponent().getModel("dashboard");
 
-      this._fetchJson(SERVICE_URL + "KpiSnapshots?$orderby=snapshotDate%20desc&$top=1")
+      this._fetchJson(serviceConfig.buildUrl("KpiSnapshots?$top=1"))
         .then(function (oPayload) {
           var oSnapshot = (oPayload.value && oPayload.value[0]) || {};
           oDashboardModel.setData({
-            monthlyRevenue: oSnapshot.monthlyRevenue || 0,
-            monthlyRevenueScale: oSnapshot.monthlyRevenueScale || "K",
-            currency: oSnapshot.currency || "EUR",
-            openOrders: oSnapshot.openOrders || 0,
-            delayedDeliveries: oSnapshot.delayedDeliveries || 0,
-            pendingInvoices: oSnapshot.pendingInvoices || 0,
-            creditBlockedOrders: oSnapshot.creditBlockedOrders || 0,
-            serviceLevel: oSnapshot.serviceLevel || 0
+            monthlyRevenue: this._read(oSnapshot, "monthlyRevenue", "MonthlyRevenue") || 0,
+            monthlyRevenueScale: this._read(oSnapshot, "monthlyRevenueScale", "MonthlyRevenueScale") || "K",
+            currency: this._read(oSnapshot, "currency", "Currency") || "EUR",
+            openOrders: this._read(oSnapshot, "openOrders", "OpenOrders") || 0,
+            delayedDeliveries: this._read(oSnapshot, "delayedDeliveries", "DelayedDeliveries") || 0,
+            pendingInvoices: this._read(oSnapshot, "pendingInvoices", "PendingInvoices") || 0,
+            creditBlockedOrders: this._read(oSnapshot, "creditBlockedOrders", "CreditBlockedOrders") || 0,
+            serviceLevel: this._read(oSnapshot, "serviceLevel", "ServiceLevel") || 0
           });
-        })
+        }.bind(this))
         .catch(function () {
           this._loadMockDashboard();
         }.bind(this));
@@ -43,20 +42,46 @@ sap.ui.define([
 
     _loadDashboardLists: function () {
       Promise.all([
-        this._fetchJson(SERVICE_URL + "TopCustomers?$orderby=revenue%20desc"),
-        this._fetchJson(SERVICE_URL + "TopMaterials?$orderby=revenue%20desc")
+        this._fetchJson(serviceConfig.buildUrl("TopCustomers")),
+        this._fetchJson(serviceConfig.buildUrl("TopMaterials"))
       ]).then(function (aPayloads) {
         this.getView().getModel("dashboardLists").setData({
           topCustomers: (aPayloads[0].value || []).map(function (oCustomer) {
-            return Object.assign({}, oCustomer, {
-              customerId: oCustomer.customerId || oCustomer.id
-            });
-          }),
-          topMaterials: aPayloads[1].value || []
+            return {
+              customerId: this._read(oCustomer, "customerId", "CustomerId", "id"),
+              name: this._read(oCustomer, "name", "customerName", "CustomerName"),
+              revenue: this._read(oCustomer, "revenue", "Revenue"),
+              orders: this._read(oCustomer, "orders", "ordersCount", "OrdersCount"),
+              trend: this._read(oCustomer, "trend", "Trend"),
+              trendStatus: this._read(oCustomer, "trendStatus", "TrendStatus")
+            };
+          }, this),
+          topMaterials: (aPayloads[1].value || []).map(function (oMaterial) {
+            return {
+              material: this._read(oMaterial, "material", "Material"),
+              category: this._read(oMaterial, "category", "Category"),
+              description: this._read(oMaterial, "description", "Description"),
+              quantity: this._read(oMaterial, "quantity", "Quantity"),
+              revenue: this._read(oMaterial, "revenue", "Revenue")
+            };
+          }, this)
         });
       }.bind(this)).catch(function () {
         this._loadMockDashboard();
       }.bind(this));
+    },
+
+    _read: function (oObject) {
+      var aKeys = Array.prototype.slice.call(arguments, 1);
+      var i;
+
+      for (i = 0; i < aKeys.length; i += 1) {
+        if (oObject[aKeys[i]] !== undefined && oObject[aKeys[i]] !== null) {
+          return oObject[aKeys[i]];
+        }
+      }
+
+      return undefined;
     },
 
     _fetchJson: function (sUrl) {
