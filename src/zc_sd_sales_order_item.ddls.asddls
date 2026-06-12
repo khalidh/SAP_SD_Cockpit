@@ -56,6 +56,5 @@ define view entity ZC_SD_SALES_ORDER_ITEM
       @UI.identification: [{ position: 80, label: 'Facturation' }]
       BillingStatusText,
 
-      LastChangedAt,
-      _SalesOrder : redirected to parent ZC_SD_SALES_ORDER
+      LastChangedAt
 }

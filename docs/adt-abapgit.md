@@ -81,8 +81,10 @@ Ordre conseille dans ADT apres import abapGit :
 6. Activer puis executer la classe `ZCL_SD_DEMO_DATA_LOAD` pour remplir les
    tables avec les donnees de demonstration.
 
-Le service definition expose aussi les entites enfants `SalesOrderItems` et
-`ProcessSteps`, necessaires pour les navigations/compositions de `SalesOrders`.
+Le service definition expose aussi `SalesOrderItems` et `ProcessSteps` comme
+entites separees. Les compositions CDS ont ete volontairement evitees afin de
+garder le backend demo read-only compatible avec les controles RAP disponibles
+dans le systeme ABAP cible.
 
 Les projections `ZC_*` contiennent aussi des annotations UI pour generer une
 preview Fiori Elements depuis le service binding RAP. Voir

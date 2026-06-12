@@ -84,7 +84,5 @@ define root view entity ZC_SD_SALES_ORDER
       CreatedBy,
       CreatedAt,
       LastChangedBy,
-      LastChangedAt,
-      _Items : redirected to composition child ZC_SD_SALES_ORDER_ITEM,
-      _ProcessSteps : redirected to composition child ZC_SD_PROCESS_STEP
+      LastChangedAt
 }
