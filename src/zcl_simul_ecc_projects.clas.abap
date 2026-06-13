@@ -1,3 +1,4 @@
+*" Dernière modification : 2026-06-13 20:30:42 CEST
 CLASS zcl_simul_ecc_projects DEFINITION
   PUBLIC
   FINAL
@@ -18,7 +19,7 @@ CLASS zcl_simul_ecc_projects IMPLEMENTATION.
 
     " 1. SIMULATION DE L'ÉCRAN DE SÉLECTION (Simule PARAMETERS en ECC)
     DATA(lv_p_id)   = '00000001'.
-    DATA(lv_p_name) = 'Projet Test ECC via Console'.
+    DATA(lv_p_name) = TEXT-001.
     DATA(lv_p_budg) = 150000.  " Supérieur à 100 000 -> Devrait passer à 'A'
     DATA(lv_p_curr) = 'EUR'.
 
@@ -46,11 +47,11 @@ CLASS zcl_simul_ecc_projects IMPLEMENTATION.
     " 4. AFFICHAGE DU RÉSULTAT (Simule l'instruction WRITE de l'ECC)
     " L'objet 'out' est fourni nativement par l'interface pour écrire dans la console
     IF sy-subrc = 0.
-      out->write( |[SUCCÈS] Projet enregistré dans la table !| ).
-      out->write( |ID     : { wa_project-proj_id }| ).
-      out->write( |Statut : { wa_project-status } (Calculé en fonction du budget)| ).
+      out->write( TEXT-002 ).
+      out->write( |{ TEXT-003 }{ wa_project-proj_id }| ).
+      out->write( |{ TEXT-004 }{ wa_project-status }{ TEXT-005 }| ).
     ELSE.
-      out->write( |[ERREUR] Impossible d'insérer le projet.| ).
+      out->write( TEXT-006 ).
     ENDIF.
 
   ENDMETHOD.
