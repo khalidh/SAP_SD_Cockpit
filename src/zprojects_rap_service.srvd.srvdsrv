@@ -1,0 +1,4 @@
+@EndUserText.label: 'Projects RAP Service'
+define service ZPROJECTS_RAP_SERVICE {
+  expose ZC_PROJECT as Projects;
+}

@@ -1,4 +1,6 @@
-*" Dernière modification : 2026-06-13 20:30:42 CEST
+*" Dernière modification : 2026-06-13 20:49:25 CEST
+"! Classe de simulation pour créer ou mettre à jour un projet via le BO RAP.
+"! Elle évite les écritures SQL directes afin de rester alignée avec le modèle SAP BTP ABAP Cloud.
 CLASS zcl_simul_ecc_projects DEFINITION
   PUBLIC
   FINAL
@@ -17,41 +19,70 @@ CLASS zcl_simul_ecc_projects IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.
 
-    " 1. SIMULATION DE L'ÉCRAN DE SÉLECTION (Simule PARAMETERS en ECC)
+    " 1. Données de test pour la simulation console
     DATA(lv_p_id)   = '00000001'.
-    DATA lv_p_name TYPE zprojects_rap-name VALUE 'Projet Test ECC via Console' ##NO_TEXT.
+    DATA lv_p_name TYPE zi_project-Name VALUE 'Projet Test ECC via Console' ##NO_TEXT.
     DATA(lv_p_budg) = 150000.  " Supérieur à 100 000 -> Devrait passer à 'A'
     DATA(lv_p_curr) = 'EUR'.
+    DATA(lv_status) = COND zi_project-Status( WHEN lv_p_budg > 100000 THEN 'A' ELSE 'N' ).
+    DATA lv_cid TYPE string VALUE 'PROJECT_1' ##NO_TEXT.
 
-    " Structure locale pour préparer l'enregistrement
-    DATA: wa_project TYPE zprojects_rap. " On pointe sur la table créée sur BTP
+    " 2. Lecture par EML pour décider entre création et mise à jour via le BO RAP
+    READ ENTITIES OF zi_project
+      ENTITY Project
+      FIELDS ( ProjectID )
+      WITH VALUE #( ( ProjectID = lv_p_id ) )
+      RESULT DATA(existing_projects)
+      FAILED DATA(failed_read).
 
-    " 2. LOGIQUE MÉTIER (Copie conforme du style procédural ECC)
-    wa_project-proj_id  = lv_p_id.
-    wa_project-name     = lv_p_name.
-    wa_project-budget   = lv_p_budg.
-    wa_project-currency = lv_p_curr.
-
-    IF wa_project-budget > 100000.
-      wa_project-status = 'A'. " Actif
-    ELSE.
-      wa_project-status = 'N'. " Nouveau
+    IF failed_read IS NOT INITIAL.
+      out->write( |[ERREUR] Lecture RAP impossible.| ) ##NO_TEXT.
+      RETURN.
     ENDIF.
 
-    " 3. INSCRIPTION DIRECTE EN BASE (Interdit en RAP, mais toléré ici pour simuler l'ECC)
-    " On nettoie la table avant pour le test
-    DELETE FROM zprojects_rap WHERE proj_id = @lv_p_id.
+    IF existing_projects IS INITIAL.
+      MODIFY ENTITIES OF zi_project
+        ENTITY Project
+        CREATE FIELDS ( ProjectID Name Budget Currency Status )
+        WITH VALUE #( ( %cid      = lv_cid
+                        ProjectID = lv_p_id
+                        Name      = lv_p_name
+                        Budget    = lv_p_budg
+                        Currency  = lv_p_curr
+                        Status    = lv_status ) )
+        FAILED DATA(failed_create).
 
-    INSERT zprojects_rap FROM @wa_project.
-
-    " 4. AFFICHAGE DU RÉSULTAT (Simule l'instruction WRITE de l'ECC)
-    " L'objet 'out' est fourni nativement par l'interface pour écrire dans la console
-    IF sy-subrc = 0.
-      out->write( |[SUCCÈS] Projet enregistré dans la table !| ) ##NO_TEXT.
-      out->write( |ID     : { wa_project-proj_id }| ) ##NO_TEXT.
-      out->write( |Statut : { wa_project-status } (Calculé en fonction du budget)| ) ##NO_TEXT.
+      IF failed_create IS NOT INITIAL.
+        out->write( |[ERREUR] Création RAP impossible.| ) ##NO_TEXT.
+        RETURN.
+      ENDIF.
     ELSE.
-      out->write( |[ERREUR] Impossible d'insérer le projet.| ) ##NO_TEXT.
+      MODIFY ENTITIES OF zi_project
+        ENTITY Project
+        UPDATE FIELDS ( Name Budget Currency Status )
+        WITH VALUE #( ( ProjectID = lv_p_id
+                        Name      = lv_p_name
+                        Budget    = lv_p_budg
+                        Currency  = lv_p_curr
+                        Status    = lv_status ) )
+        FAILED DATA(failed_update).
+
+      IF failed_update IS NOT INITIAL.
+        out->write( |[ERREUR] Mise à jour RAP impossible.| ) ##NO_TEXT.
+        RETURN.
+      ENDIF.
+    ENDIF.
+
+    COMMIT ENTITIES
+      RESPONSE OF zi_project
+      FAILED DATA(failed_commit).
+
+    IF failed_commit IS INITIAL.
+      out->write( |[SUCCÈS] Projet enregistré via RAP.| ) ##NO_TEXT.
+      out->write( |ID     : { lv_p_id }| ) ##NO_TEXT.
+      out->write( |Statut : { lv_status } (Calculé en fonction du budget)| ) ##NO_TEXT.
+    ELSE.
+      out->write( |[ERREUR] Commit RAP impossible.| ) ##NO_TEXT.
     ENDIF.
 
   ENDMETHOD.

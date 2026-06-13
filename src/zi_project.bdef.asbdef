@@ -1,0 +1,24 @@
+managed;
+strict ( 2 );
+
+define behavior for ZI_PROJECT alias Project
+persistent table zprojects_rap
+lock master
+authorization master ( none )
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly : update ) ProjectID;
+  field ( mandatory ) Name, Budget, Currency, Status;
+
+  mapping for zprojects_rap
+  {
+    ProjectID = proj_id;
+    Name      = name;
+    Budget    = budget;
+    Currency  = currency;
+    Status    = status;
+  }
+}
