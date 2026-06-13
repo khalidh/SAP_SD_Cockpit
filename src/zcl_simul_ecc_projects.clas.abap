@@ -19,7 +19,7 @@ CLASS zcl_simul_ecc_projects IMPLEMENTATION.
 
     " 1. SIMULATION DE L'ÉCRAN DE SÉLECTION (Simule PARAMETERS en ECC)
     DATA(lv_p_id)   = '00000001'.
-    DATA(lv_p_name) = TEXT-001.
+    DATA lv_p_name TYPE zprojects_rap-name VALUE TEXT-001.
     DATA(lv_p_budg) = 150000.  " Supérieur à 100 000 -> Devrait passer à 'A'
     DATA(lv_p_curr) = 'EUR'.
 
